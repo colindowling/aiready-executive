@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIReady Executive — Executive AI Readiness Advisory</title>
+<meta name="description" content="A fixed-fee, fixed-timeline advisory engagement that takes C-suite leaders and boards from AI gap to boardroom-ready in 30 days — executive alignment above the Chief AI Officer layer, delivered by a senior practitioner.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="https://aireadyexecutive.com/">
+<meta name="theme-color" content="#080808">
+<meta name="author" content="AIReady Executive">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AIReady Executive">
+<meta property="og:title" content="AIReady Executive — Executive AI Readiness Advisory">
+<meta property="og:description" content="From AI gap to boardroom-ready in 30 days. A senior-practitioner advisory engagement for the C-suite and board.">
+<meta property="og:url" content="https://aireadyexecutive.com/">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AIReady Executive — Executive AI Readiness Advisory">
+<meta name="twitter:description" content="From AI gap to boardroom-ready in 30 days. A senior-practitioner advisory engagement for the C-suite and board.">
+<!-- Favicon -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #080808;
+    --off-black: #111111;
+    --white:   #F5F5F0;
+    --gold:    #C9A84C;
+    --gold-dim: #8A6F33;
+    --rule:    rgba(201,168,76,0.18);
+    --text-dim: rgba(245,245,240,0.66);
+    --text-mid: rgba(245,245,240,0.86);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background: rgba(8,8,8,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-logo {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 300;
+    font-size: 0.8rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-cta {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid var(--gold-dim);
+    padding: 0.5rem 1.4rem;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background:
+      linear-gradient(90deg, #080808 0%, rgba(8,8,8,0.94) 32%, rgba(8,8,8,0.80) 52%, rgba(8,8,8,0.46) 76%, rgba(8,8,8,0.24) 100%),
+      url('/assets/boardroom.jpg');
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: radial-gradient(ellipse 55% 60% at 20% 42%, rgba(201,168,76,0.07) 0%, transparent 66%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 9rem 4rem 5rem;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(2.6rem, 6.2vw, 5.8rem);
+    line-height: 1.08;
+    letter-spacing: 0;
+    max-width: 18ch;
+    margin-bottom: 2rem;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-sub {
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
+    font-weight: 400;
+    color: rgba(245,245,240,0.92);
+    max-width: 46ch;
+    margin-bottom: 3.5rem;
+    line-height: 1.75;
+  }
+
+  .hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 1rem 2.5rem;
+    transition: opacity 0.2s;
+  }
+
+  .btn-primary:hover { opacity: 0.85; }
+
+  .btn-ghost {
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    transition: color 0.2s;
+  }
+
+  .btn-ghost::after { content: '→'; color: var(--gold); }
+  .btn-ghost:hover { color: var(--white); }
+
+  /* ── STAT BAND ── */
+  .stat-band {
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 4rem 4rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .stat-item {
+    padding: 1rem 3rem 1rem 0;
+    border-right: 1px solid var(--rule);
+  }
+
+  .stat-item:last-child { border-right: none; padding-left: 3rem; padding-right: 0; }
+  .stat-item:nth-child(2) { padding-left: 3rem; }
+
+  .stat-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.5;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-source {
+    font-size: 0.65rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    padding: 7rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-headline em { font-style: italic; color: var(--gold); }
+
+  .section-body {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-mid);
+    max-width: 58ch;
+    line-height: 1.85;
+  }
+
+  /* ── PAIN SECTION ── */
+  .pain-section {
+    background: var(--off-black);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .pain-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 7rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .pain-list {
+    list-style: none;
+    margin-top: 3rem;
+  }
+
+  .pain-list li {
+    display: flex;
+    gap: 1.2rem;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  .pain-list li:first-child { border-top: 1px solid var(--rule); }
+
+  .pain-list li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  .pull-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+    line-height: 1.4;
+    color: var(--white);
+    border-left: 1px solid var(--gold);
+    padding-left: 2rem;
+    margin-top: 3rem;
+  }
+
+  .pull-source {
+    font-family: 'Manrope', sans-serif;
+    font-style: normal;
+    font-size: 0.68rem;
+    font-weight: 300;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    display: block;
+    margin-top: 1.2rem;
+  }
+
+  /* ── WHAT WE DO ── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 5rem;
+    border: 1px solid var(--rule);
+  }
+
+  .pillar {
+    padding: 2.5rem;
+    border-right: 1px solid var(--rule);
+    transition: background 0.25s;
+  }
+
+  .pillar:last-child { border-right: none; }
+  .pillar:hover { background: rgba(201,168,76,0.04); }
+
+  .pillar-index {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: var(--rule);
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .pillar-title {
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+  }
+
+  .pillar-body {
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.75;
+  }
+
+  /* ── FOR WHO ── */
+  .for-who {
+    background: var(--off-black);
+    border-top: 1px solid var(--rule);
+  }
+
+  .for-who-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 7rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 6rem;
+    align-items: center;
+  }
+
+  .for-who-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+  }
+
+  .for-who-cell {
+    background: var(--off-black);
+    padding: 2rem;
+    font-size: 0.82rem;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  .for-who-cell strong {
+    display: block;
+    font-weight: 400;
+    color: var(--white);
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ── CTA SECTION ── */
+  .cta-section {
+    text-align: center;
+    padding: 9rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,168,76,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-section .section-headline {
+    max-width: 20ch;
+    margin: 0 auto 1.5rem;
+  }
+
+  .cta-section .section-body {
+    max-width: 46ch;
+    margin: 0 auto 3rem;
+    text-align: center;
+  }
+
+  .cta-sub {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    letter-spacing: 0.12em;
+    margin-top: 1.5rem;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.68rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+
+  footer span { color: var(--gold); }
+
+  /* ── DIVIDER ── */
+  .gold-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 0;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline-section {
+    background: var(--off-black);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .timeline-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 7rem 4rem;
+  }
+
+  .timeline-track {
+    margin-top: 4rem;
+    position: relative;
+  }
+
+  .timeline-track::before {
+    content: '';
+    position: absolute;
+    top: 2.2rem;
+    left: 0; right: 0;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .timeline-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+
+  .timeline-step {
+    padding: 0 2rem 0 0;
+    position: relative;
+  }
+
+  .timeline-step:last-child { padding-right: 0; }
+
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-bottom: 1.8rem;
+    position: relative;
+    z-index: 1;
+    flex-shrink: 0;
+  }
+
+  .timeline-week {
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+
+  .timeline-phase {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+
+  .timeline-deliverable {
+    font-size: 0.78rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  .timeline-outcome {
+    margin-top: 3.5rem;
+    border: 1px solid var(--rule);
+    padding: 2rem 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: rgba(201,168,76,0.03);
+  }
+
+  .timeline-outcome-label {
+    font-size: 0.65rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .timeline-outcome-text {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.6;
+    border-left: 1px solid var(--rule);
+    padding-left: 2rem;
+  }
+
+  /* ── PRICING ── */
+  .pricing-section {
+    padding: 7rem 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 4rem;
+    border: 1px solid var(--rule);
+  }
+
+  .pricing-card {
+    padding: 2.5rem;
+    border-right: 1px solid var(--rule);
+    position: relative;
+    transition: background 0.25s;
+  }
+
+  .pricing-card:last-child { border-right: none; }
+  .pricing-card:hover { background: rgba(201,168,76,0.03); }
+
+  .pricing-card.featured {
+    background: rgba(201,168,76,0.06);
+  }
+
+  .pricing-badge {
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    padding: 0.25rem 0.75rem;
+    display: inline-block;
+    margin-bottom: 1.5rem;
+  }
+
+  .pricing-name {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.8rem;
+  }
+
+  .pricing-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+
+  .pricing-price span {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    margin-left: 0.3rem;
+  }
+
+  .pricing-duration {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--gold-dim);
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+  }
+
+  .pricing-divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin-bottom: 1.8rem;
+  }
+
+  .pricing-features {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+
+  .pricing-features li {
+    font-size: 0.8rem;
+    font-weight: 300;
+    color: var(--text-mid);
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.08);
+    display: flex;
+    gap: 0.8rem;
+    line-height: 1.5;
+  }
+
+  .pricing-features li::before {
+    content: '→';
+    color: var(--gold);
+    flex-shrink: 0;
+    font-size: 0.7rem;
+    margin-top: 0.15rem;
+  }
+
+  .pricing-note {
+    font-size: 0.7rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.6;
+    font-style: italic;
+    margin-top: 1rem;
+  }
+
+  .pricing-disclaimer {
+    margin-top: 2.5rem;
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    text-align: center;
+    line-height: 1.7;
+    max-width: 60ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials-section {
+    padding: 7rem 4rem;
+    background: var(--black);
+  }
+
+  .testimonials-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--rule);
+  }
+
+  .testimonial-card {
+    padding: 2.8rem;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    transition: background 0.25s;
+  }
+
+  .testimonial-card:last-child { border-right: none; }
+  .testimonial-card:hover { background: rgba(201,168,76,0.03); }
+
+  .testimonial-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
+    line-height: 1.75;
+    color: var(--text-mid);
+  }
+
+  .testimonial-quote::before {
+    content: '\201C';
+    font-size: 3rem;
+    color: var(--gold);
+    line-height: 0;
+    vertical-align: -0.6rem;
+    margin-right: 0.2rem;
+    font-style: normal;
+  }
+
+  .testimonial-author {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.2rem;
+  }
+
+  .testimonial-name {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--white);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .testimonial-company {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── FAQ ── */
+  .faq-section {
+    background: var(--off-black);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .faq-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 7rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 6rem;
+    align-items: start;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .faq-item {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .faq-item:first-child {
+    border-top: 1px solid var(--rule);
+  }
+
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.6rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.5;
+    transition: color 0.2s;
+  }
+
+  .faq-question:hover { color: var(--gold); }
+
+  .faq-icon {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    position: relative;
+    color: var(--gold);
+  }
+
+  .faq-icon::before,
+  .faq-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--gold);
+    border-radius: 1px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .faq-icon::before {
+    width: 12px; height: 1px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .faq-icon::after {
+    width: 1px; height: 12px;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .faq-item.open .faq-icon::after {
+    transform: translate(-50%, -50%) rotate(90deg);
+    opacity: 0;
+  }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 400px;
+  }
+
+  .faq-answer-inner {
+    padding-bottom: 1.6rem;
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: var(--text-mid);
+    line-height: 1.85;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .hero {
+      background: linear-gradient(180deg, rgba(8,8,8,0.70) 0%, rgba(8,8,8,0.86) 52%, rgba(8,8,8,0.95) 100%), url('/assets/boardroom.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .hero-inner { padding: 7rem 1.75rem 4.5rem; }
+    .stat-band { grid-template-columns: 1fr; padding: 2.5rem 1.5rem; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--rule); padding: 1.5rem 0; }
+    .stat-item:last-child { border-bottom: none; padding-left: 0; }
+    .stat-item:nth-child(2) { padding-left: 0; }
+    .section { padding: 4rem 1.5rem; }
+    .pain-inner { grid-template-columns: 1fr; gap: 2rem; padding: 4rem 1.5rem; }
+    .pillars { grid-template-columns: 1fr; }
+    .pillar { border-right: none; border-bottom: 1px solid var(--rule); }
+    .timeline-inner { padding: 4rem 1.5rem; }
+    .timeline-steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    .timeline-track::before { display: none; }
+    .timeline-step { padding: 0; }
+    .timeline-outcome { flex-direction: column; gap: 1rem; }
+    .timeline-outcome-text { border-left: none; padding-left: 0; border-top: 1px solid var(--rule); padding-top: 1rem; }
+    .pricing-section { padding: 4rem 1.5rem; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card { border-right: none; border-bottom: 1px solid var(--rule); }
+    .pricing-card:last-child { border-bottom: none; }
+    .for-who-inner { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+    .for-who-grid { grid-template-columns: 1fr; }
+    .testimonials-section { padding: 4rem 1.5rem; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonial-card { border-right: none; border-bottom: 1px solid var(--rule); }
+    .testimonial-card:last-child { border-bottom: none; }
+    .faq-inner { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
+    .cta-section { padding: 6rem 1.5rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+  }
+
+  /* ── FADE IN ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">AIReady <span>Executive</span></div>
+  <a href="#apply" class="nav-cta">Apply Now</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow fade-up">Executive AI Readiness Advisory</p>
+    <h1 class="hero-headline fade-up">Your board expects you to <em>have this handled.</em></h1>
+    <p class="hero-sub fade-up">Half of CEOs believe their position depends on getting AI right in 2026. Most don't know where to start. We work directly with C-suite leaders to close that gap — before the board asks why you haven't.</p>
+    <div class="hero-actions fade-up">
+      <a href="#apply" class="btn-primary">Book an Assessment</a>
+      <a href="#what" class="btn-ghost">See the framework</a>
+    </div>
+  </div>
+</section>
+
+<!-- STAT BAND -->
+<div class="stat-band">
+  <div class="stat-item fade-up">
+    <div class="stat-number">50%</div>
+    <div class="stat-label">of CEOs say their job depends on getting AI right in 2026</div>
+    <div class="stat-source">BCG AI Radar, 2026</div>
+  </div>
+  <div class="stat-item fade-up">
+    <div class="stat-number">12×</div>
+    <div class="stat-label">more likely to win with AI when C-suite is deeply engaged</div>
+    <div class="stat-source">BCG The Widening AI Gap, 2025</div>
+  </div>
+  <div class="stat-item fade-up">
+    <div class="stat-number">42%</div>
+    <div class="stat-label">of companies killed most AI initiatives in 2025 — up from 17% the year prior</div>
+    <div class="stat-source">Alpha Apex / Industry Analysis, 2026</div>
+  </div>
+</div>
+
+<!-- PAIN -->
+<div class="pain-section">
+  <div class="pain-inner">
+    <div>
+      <p class="section-eyebrow fade-up">The Problem</p>
+      <h2 class="section-headline fade-up">AI strategy has become <em>the CEO's mandate.</em> Most aren't ready for it.</h2>
+      <blockquote class="pull-quote fade-up">
+        "Companies that crowdsource AI efforts create impressive adoption numbers — but almost never produce meaningful business outcomes."
+        <span class="pull-source">PwC AI Predictions, 2026</span>
+      </blockquote>
+    </div>
+    <div>
+      <p class="section-body fade-up" style="margin-bottom:0; color: var(--text-mid);">The failure mode isn't technology. It isn't budget. It's leadership clarity. Boards are mandating readiness assessments. Investors are benchmarking execution. Your competitors' executives are getting briefed. The question isn't whether AI will reshape your business — it's whether you'll be the one steering it.</p>
+      <ul class="pain-list fade-up">
+        <li>Your team is running disconnected pilots with no enterprise-wide strategy or ownership</li>
+        <li>You lack a framework to evaluate AI tools, separate signal from noise, and define outcomes first</li>
+        <li>Workforce culture hasn't shifted — employees are experimenting without direction</li>
+        <li>The board is asking questions you don't yet have crisp answers to</li>
+        <li>Only 15% of organizations report being fully prepared to support advanced AI initiatives</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT WE DO -->
+<section class="section" id="what" style="max-width:100%; padding-left:4rem; padding-right:4rem;">
+  <div style="max-width:1200px; margin:0 auto;">
+    <p class="section-eyebrow fade-up">The Framework</p>
+    <h2 class="section-headline fade-up">Built for how <em>executives</em> actually operate</h2>
+    <p class="section-body fade-up">Not a course. Not a cohort. A structured advisory engagement that produces real decisions, a defensible strategy, and a leadership team that can execute.</p>
+
+    <div class="pillars fade-up">
+      <div class="pillar">
+        <div class="pillar-index">I</div>
+        <div class="pillar-title">Executive AI Readiness Assessment</div>
+        <div class="pillar-body">An honest audit of where your leadership team, culture, data, and governance actually stand — before any investment is made. Gaps surfaced. No flattery.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-index">II</div>
+        <div class="pillar-title">Outcomes-First Strategy Design</div>
+        <div class="pillar-body">Define business outcomes before evaluating tools or vendors. Most organizations do this backwards. We reverse it — forcing ROI clarity before a single dollar is committed.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-index">III</div>
+        <div class="pillar-title">AI-Ready Culture & Change Architecture</div>
+        <div class="pillar-body">A culture that can actually absorb AI requires deliberate design at the executive layer first. We build the signals, norms, and operating model your organization will follow.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-index">IV</div>
+        <div class="pillar-title">Tool & Vendor Evaluation Framework</div>
+        <div class="pillar-body">A structured lens for assessing AI tools against your specific use cases — not vendor demos, not hype cycles. Decisions grounded in your actual operating context.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-index">V</div>
+        <div class="pillar-title">Board-Level Readiness Narrative</div>
+        <div class="pillar-body">Leave with a clear, defensible AI strategy you can present to your board, investors, and leadership team. Confidence backed by structure, not talking points.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-index">VI</div>
+        <div class="pillar-title">90-Day Execution Blueprint</div>
+        <div class="pillar-body">A sequenced roadmap with owners, milestones, and decision gates. Built to move — not to sit in a slide deck until the next strategy offsite.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="gold-rule">
+
+<!-- TIMELINE -->
+<div class="timeline-section" id="timeline">
+  <div class="timeline-inner">
+    <p class="section-eyebrow fade-up">The Engagement</p>
+    <h2 class="section-headline fade-up">From gap to <em>boardroom-ready</em> in 30 days.</h2>
+    <p class="section-body fade-up">A structured, time-bounded engagement. You know exactly what you're getting and when. No open-ended retainers. No deliverable drift.</p>
+
+    <div class="timeline-track fade-up">
+      <div class="timeline-steps">
+        <div class="timeline-step">
+          <div class="timeline-dot"></div>
+          <div class="timeline-week">Days 1–3</div>
+          <div class="timeline-phase">Intake & Diagnostic</div>
+          <div class="timeline-deliverable">Deep-dive interview with you and up to two key leadership stakeholders. We map your current AI posture, existing initiatives, board expectations, and where the real gaps live.</div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-dot"></div>
+          <div class="timeline-week">Days 4–10</div>
+          <div class="timeline-phase">Readiness Assessment</div>
+          <div class="timeline-deliverable">Structured evaluation across five dimensions: leadership alignment, data & infrastructure, culture & workforce readiness, governance, and use-case pipeline. Written findings delivered by Day 10.</div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-dot"></div>
+          <div class="timeline-week">Days 11–21</div>
+          <div class="timeline-phase">Strategy & Framework Build</div>
+          <div class="timeline-deliverable">Outcomes-first AI strategy built around your business — not a template. Tool evaluation framework, vendor criteria, and cultural change architecture designed for your org structure.</div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-dot"></div>
+          <div class="timeline-week">Days 22–30</div>
+          <div class="timeline-phase">Blueprint & Board Narrative</div>
+          <div class="timeline-deliverable">Final 90-day execution blueprint with sequenced milestones, owners, and decision gates. Board-ready AI narrative you can present with confidence. Live working session to walk through everything.</div>
+        </div>
+      </div>
+
+      <div class="timeline-outcome">
+        <div class="timeline-outcome-label">Day 30 Outcome</div>
+        <div class="timeline-outcome-text">A complete, defensible AI readiness strategy. Written assessment of your current state, an outcomes-first roadmap, a tool evaluation framework, a culture change architecture, and a board narrative — delivered in 30 days, built around your business, owned by you permanently.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <p class="section-eyebrow fade-up">Investment</p>
+  <h2 class="section-headline fade-up">One engagement. <em>Three entry points.</em></h2>
+  <p class="section-body fade-up">Scoped to where you are and what you need. Every tier delivers the same 30-day timeline and the same quality of thinking — the difference is depth, access, and what we build together.</p>
+
+  <div class="pricing-grid fade-up">
+
+    <div class="pricing-card">
+      <div class="pricing-name">Solo Executive</div>
+      <div class="pricing-price">$20,000<span>flat</span></div>
+      <div class="pricing-duration">30 days · 1 executive</div>
+      <hr class="pricing-divider">
+      <ul class="pricing-features">
+        <li>Executive intake & diagnostic interview (90 min)</li>
+        <li>AI readiness assessment across 5 dimensions</li>
+        <li>Outcomes-first AI strategy built for your org</li>
+        <li>Tool & vendor evaluation framework</li>
+        <li>90-day execution blueprint with owners & milestones</li>
+        <li>Board-ready AI narrative document</li>
+        <li>Final working session & delivery walkthrough</li>
+        <li>30 days async Q&A access post-delivery</li>
+      </ul>
+      <div class="pricing-note">The complete engagement for a single executive who needs to move fast and own the strategy personally.</div>
+    </div>
+
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Most Requested</div>
+      <div class="pricing-name">Leadership Trio</div>
+      <div class="pricing-price">$45,000<span>flat</span></div>
+      <div class="pricing-duration">35 days · up to 3 executives</div>
+      <hr class="pricing-divider">
+      <ul class="pricing-features">
+        <li>Everything in Solo Executive</li>
+        <li>Individual intake sessions with all 3 executives</li>
+        <li>Cross-functional alignment workshop (half day)</li>
+        <li>Role-specific AI briefings per executive</li>
+        <li>Unified strategy that accounts for functional tensions</li>
+        <li>45 days async Q&A access post-delivery</li>
+        <li>One board presentation prep session</li>
+      </ul>
+      <div class="pricing-note">For leadership teams that need to move together. Alignment at the top before strategy hits the organization.</div>
+    </div>
+
+    <div class="pricing-card">
+      <div class="pricing-name">Full C-Suite</div>
+      <div class="pricing-price">$75,000<span>flat</span></div>
+      <div class="pricing-duration">45 days · up to 5 executives</div>
+      <hr class="pricing-divider">
+      <ul class="pricing-features">
+        <li>Everything in Leadership Trio</li>
+        <li>Individual sessions with all 5 C-suite members</li>
+        <li>Full-day executive alignment offsite — 6 hours, starting at $6,000 (virtual or in-person)</li>
+        <li>Org-wide AI culture change architecture</li>
+        <li>Manager-level briefing framework for cascade</li>
+        <li>60 days async Q&A access post-delivery</li>
+        <li>Two board presentation prep sessions</li>
+        <li>30-day check-in session post-implementation</li>
+      </ul>
+      <div class="pricing-note">Enterprise-level alignment. Five executives, one unified strategy, and a cascade plan the whole organization can follow.</div>
+    </div>
+
+  </div>
+
+  <p class="pricing-disclaimer fade-up">All engagements are fixed-fee. No hourly billing, no scope creep, no surprises. A 50% deposit is required to begin; the remainder is due upon delivery of final materials. Custom scopes available for portfolio companies and multi-entity organizations — contact us to discuss.</p>
+</section>
+
+<hr class="gold-rule">
+
+<!-- FOR WHO -->
+<div class="for-who">
+  <div class="for-who-inner">
+    <div>
+      <p class="section-eyebrow fade-up">Who This Is For</p>
+      <h2 class="section-headline fade-up">Leaders who are <em>accountable</em> for what happens next</h2>
+      <p class="section-body fade-up">This is not executive education. It is working advisory for leaders who have been told — or already know — that their AI posture is a strategic liability.</p>
+      <blockquote class="pull-quote fade-up" style="margin-top:2.5rem; font-size:clamp(1rem,1.6vw,1.3rem);">
+        Half of CEOs believe their job depends on getting AI right in 2026. C-suite teams that are deeply engaged with AI are 12× more likely to be among the top 5% of companies winning with it.
+        <span class="pull-source">BCG AI Radar &amp; The Widening AI Gap, 2025–2026</span>
+      </blockquote>
+    </div>
+    <div class="for-who-grid fade-up">
+      <div class="for-who-cell">
+        <strong>CEO / President</strong>
+        AI is now your mandate, not your CTO's. Own the strategy before the board demands an accounting.
+      </div>
+      <div class="for-who-cell">
+        <strong>Board Member</strong>
+        Ask the right questions. Evaluate management's AI claims against a framework, not instinct.
+      </div>
+      <div class="for-who-cell">
+        <strong>COO</strong>
+        Your operations are the implementation surface. Build the culture and change architecture that makes adoption real.
+      </div>
+      <div class="for-who-cell">
+        <strong>CFO / Strategy Lead</strong>
+        Approve AI investments with a framework for outcomes, not vendor enthusiasm. Govern what gets funded.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SOCIAL PROOF -->
+<div class="testimonials-section">
+  <div class="testimonials-inner">
+    <p class="section-eyebrow fade-up" style="text-align:center; margin-bottom:3rem;">What Clients Say</p>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">"I'd been putting off our AI strategy for six months because every option I looked at felt like buying a course or hiring a firm that would disappear after the deck. This was neither. Thirty days later I had a strategy I could actually defend to the board — and more importantly, one my team could execute without me having to explain it from scratch every Monday."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-name">PLACEHOLDER — CEO</div>
+          <div class="testimonial-company">Series B SaaS, 180 employees</div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">"We had a Chief AI Officer already, a dozen pilots running, and still no coherent answer to what our AI posture actually was. The readiness assessment was humbling in the right way. The 90-day blueprint gave us a sequence we could hold people accountable to. The board presentation went better than any I've done in the last three years."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-name">PLACEHOLDER — CEO</div>
+          <div class="testimonial-company">PE-backed Healthcare Technology, 400 employees</div>
+        </div>
+      </div>
+
+      <div class="testimonial-card fade-up">
+        <div class="testimonial-quote">"As CFO I was the one pushing back hardest on AI spend — not because I didn't believe in it, but because nobody could give me a framework for what we were actually buying. The engagement changed that. I now have a tool evaluation model I can apply to any vendor conversation. It's already killed two deals that would have been expensive mistakes."</div>
+        <div class="testimonial-author">
+          <div class="testimonial-name">PLACEHOLDER — CFO</div>
+          <div class="testimonial-company">Enterprise Logistics, 1,200 employees</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<hr class="gold-rule">
+
+<!-- FAQ -->
+<div class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div>
+      <p class="section-eyebrow fade-up">FAQ</p>
+      <h2 class="section-headline fade-up">Questions worth <em>asking</em> before you engage</h2>
+      <p class="section-body fade-up" style="margin-top:1rem;">If something isn't answered here, ask it directly in your intake call. We'd rather you go in clear than go in uncertain.</p>
+    </div>
+
+    <div class="faq-list fade-up">
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          How is this different from hiring a big consulting firm to do our AI strategy?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Large firms send a senior partner to sell the work, then hand it to a team of analysts you've never met. The thinking you're paying for gets diluted before it reaches you. This engagement is different by design — you work directly with a senior practitioner from intake to delivery, and the strategy is built around your business, not adapted from a template. You also get a fixed fee and a fixed timeline. No billable hour surprises, no scope drift, no 200-page deck that sits unread until the next planning cycle.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          We already have some AI initiatives underway. Is this still relevant?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Often more relevant. Most organizations running AI initiatives are doing so without a clear outcomes framework, without defined ownership, and without a coherent view of how the pieces fit together. The Readiness Assessment is specifically designed to diagnose exactly that — where you have real momentum versus where you have the appearance of progress. If your pilots aren't converting to enterprise-wide impact, that's a leadership and governance problem, not a technology problem. That's what we fix.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          What do we actually walk away with at the end of 30 days?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Five concrete deliverables, all owned by you permanently: a written AI Readiness Assessment documenting your current state across five dimensions; an Outcomes-First AI Strategy aligned to your specific business priorities; a Tool & Vendor Evaluation Framework you can use independently going forward; a 90-Day Execution Blueprint with sequenced milestones, owners, and decision gates; and a Board-Ready AI Narrative you can present with confidence. Everything is written, structured, and handed over — not locked in a consultant's head or dependent on ongoing access to us.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          How much of our team's time does this require?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">We've designed the engagement to be light on your calendar by intention — executives don't have 10 hours a week to give a consultant. For the Solo Executive engagement, expect roughly 4–5 hours of your time across the full 30 days: the initial intake session, one or two working sessions during the strategy build, and the final delivery walkthrough. For the Leadership Trio and Full C-Suite tiers, individual executive time stays similar — the additional time is in the cross-functional alignment sessions, which are structured and facilitated so they don't sprawl.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          What happens after the engagement ends — is there ongoing support?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Every engagement includes a period of async Q&A access after delivery — 30, 45, or 60 days depending on your tier — so you're not left alone the moment the blueprint lands. Beyond that, we don't push retainers or ongoing advisory as a default. Some clients continue working with us as they move into implementation; others take the strategy and execute independently. What matters is that you leave with everything you need to move without us. If continued support becomes relevant, we'll have that conversation honestly and on your terms.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          We already have a Chief AI Officer — or a Head of Innovation. Do we still need this?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Possibly the most common situation we encounter — and one of the most useful applications of this engagement. A Chief AI Officer or Head of Innovation is responsible for execution. What this engagement addresses is executive alignment above that layer: whether the C-suite and board are asking the right questions, whether strategy is being set at the leadership level rather than delegated entirely to a single internal champion, and whether the organization has a coherent framework that the CAIO is executing against — or just a mandate with no guardrails. Many CAIOs have told us privately that the biggest obstacle to their work is the absence of genuine executive conviction at the top. This engagement fixes that. It also gives your innovation leader something to point to when they need air cover.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<hr class="gold-rule">
+
+<!-- CTA -->
+<section class="cta-section" id="apply">
+  <p class="section-eyebrow fade-up">Next Step</p>
+  <h2 class="section-headline fade-up">Start with a <em>60-minute readiness conversation.</em></h2>
+  <p class="section-body fade-up">No pitch. No deck. A direct conversation about where your organization stands, what's blocking you, and whether this engagement is the right fit.</p>
+  <a href="mailto:hello@aireadyexecutive.com?subject=Executive%20AI%20Readiness%20Assessment" class="btn-primary fade-up">Request Your Assessment</a>
+  <p class="cta-sub fade-up">Engagements are limited. We work with one executive team at a time.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="nav-logo">AIReady <span>Executive</span></div>
+  <div>© 2026 AIReady Executive. All rights reserved.</div>
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
