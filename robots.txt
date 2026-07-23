@@ -1,8 +1,5 @@
 # AIReady Executive
-# PRE-LAUNCH: the site is live on a temporary DigitalOcean URL and must NOT be indexed.
-# At custom-domain cutover: replace the block below with an allow policy and remove the
-# noindex meta tag from index.html.
 User-agent: *
-Disallow: /
+Allow: /
 
-Sitemap: https://aireadyexecutive.com/sitemap.xml
+Sitemap: https://theaireadyexecutive.com/sitemap.xml
