@@ -140,37 +140,62 @@
   .contact-header .section-headline { max-width: 18ch; }
 
   /* ── CONTACT BODY ── */
-  .contact-section { padding: 5rem 4rem 7rem; }
+  .contact-section { padding: 4.5rem 4rem 6rem; }
 
-  .contact-inner {
-    max-width: 1200px;
+  /* the two paths, side by side and equally weighted */
+  .choice-grid {
+    max-width: 1320px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 0.85fr 1.15fr;
-    gap: 5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
     align-items: start;
   }
 
-  /* left rail */
-  .contact-aside h3 {
-    font-family: 'Manrope', sans-serif;
-    font-size: 0.68rem;
+  .col-head { margin-bottom: 1.8rem; min-height: 6.6rem; }
+
+  .col-title {
+    font-family: 'Cormorant Garamond', serif;
     font-weight: 400;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 2rem;
+    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    line-height: 1.2;
+    margin-bottom: 0.7rem;
   }
 
-  .step-list { list-style: none; counter-reset: step; }
+  .col-title em { font-style: italic; color: var(--gold); }
+
+  .col-sub {
+    font-size: 0.92rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    line-height: 1.75;
+    max-width: 44ch;
+  }
+
+  /* ── WHAT HAPPENS NEXT (band beneath) ── */
+  .steps-section {
+    background: var(--off-black);
+    padding: 5rem 4rem 5.5rem;
+  }
+
+  .steps-inner { max-width: 1320px; margin: 0 auto; }
+
+  .steps-inner > .section-eyebrow { text-align: center; margin-bottom: 3rem; }
+
+  .step-list {
+    list-style: none;
+    counter-reset: step;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
 
   .step-list li {
     counter-increment: step;
     position: relative;
     padding-left: 3rem;
-    padding-bottom: 2.2rem;
     color: var(--text-mid);
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     line-height: 1.8;
   }
 
@@ -211,7 +236,9 @@
   .aside-note {
     border-left: 1px solid var(--gold-dim);
     padding: 0.4rem 0 0.4rem 1.5rem;
-    margin-top: 1rem;
+    margin: 3rem auto 0;
+    max-width: 52ch;
+    text-align: left;
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 1.05rem;
@@ -363,38 +390,16 @@
   }
 
   /* ── BOOKING ── */
-  .booking-section {
-    background: var(--off-black);
-    padding: 6rem 4rem 7rem;
-  }
-
-  .booking-inner { max-width: 1200px; margin: 0 auto; }
-
-  .booking-head {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: end;
-    margin-bottom: 3.5rem;
-  }
-
-  .booking-head .section-headline { margin-bottom: 0; max-width: 14ch; }
-  .booking-head .section-body { max-width: 46ch; }
-
-  /* Calendly centres its own card inside the iframe, so a full 1200px frame
-     leaves the unselected state marooned in empty space. ~1040px keeps the
-     frame close to the card while still fitting the two-column
-     date + time-slot view once a day is picked. */
+  /* Sits in its own column beside the form, so it fills the column rather
+     than being centre-capped. Height is tuned to sit level with the form. */
   .calendly-wrapper {
     border: 1px solid var(--rule);
-    background: var(--black);
+    background: var(--off-black);
     overflow: hidden;
-    max-width: 1040px;
-    margin: 0 auto;
-    min-height: 720px;
+    min-height: 748px;
   }
 
-  .calendly-inline-widget { min-width: 100%; height: 720px; }
+  .calendly-inline-widget { min-width: 100%; height: 748px; }
 
   /* ── FOOTER ── */
   footer {
@@ -415,12 +420,17 @@
     nav { padding: 1.2rem 1.5rem; }
     .contact-header { padding: 8rem 1.5rem 3rem; }
     .contact-section { padding: 3rem 1.5rem 5rem; }
-    .contact-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+    .choice-grid { grid-template-columns: 1fr; gap: 3.5rem; }
+    /* Stacked, the second path gets buried — which is the problem this
+       layout exists to solve. On narrow screens put booking first, since
+       "just grab a slot" is the lower-friction path on a phone. */
+    .choice-col#book { order: -1; }
+    .col-head { min-height: 0; margin-bottom: 1.4rem; }
     .form-shell { padding: 2rem 1.5rem; }
     .cf-grid { grid-template-columns: 1fr; gap: 1.6rem; }
-    .booking-section { padding: 4rem 1.5rem 5rem; }
-    .booking-head { grid-template-columns: 1fr; gap: 1.5rem; align-items: start; margin-bottom: 2.5rem; }
-    .calendly-wrapper, .calendly-inline-widget { min-height: 1000px; height: 1000px; }
+    .calendly-wrapper, .calendly-inline-widget { min-height: 1010px; height: 1010px; }
+    .steps-section { padding: 3.5rem 1.5rem 4rem; }
+    .step-list { grid-template-columns: 1fr; gap: 2.2rem; }
     footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
   }
 
@@ -449,37 +459,23 @@
 <header class="contact-header">
   <p class="section-eyebrow fade-up">Contact</p>
   <h1 class="section-headline fade-up">Request your <em>readiness conversation.</em></h1>
-  <p class="section-body fade-up">No pitch. No deck. A direct conversation about where your organization stands, what's blocking you, and whether this engagement is the right fit. If it isn't, we'll tell you that plainly. Send the form below, or book a time directly.</p>
+  <p class="section-body fade-up">No pitch. No deck. A direct conversation about where your organization stands, what's blocking you, and whether this engagement is the right fit. If it isn't, we'll tell you that plainly. Two ways to start — pick whichever suits you.</p>
 </header>
 
 <hr class="gold-rule">
 
 <!-- CONTACT -->
 <div class="contact-section">
-  <div class="contact-inner">
+  <div class="choice-grid">
 
-    <!-- LEFT RAIL -->
-    <aside class="contact-aside fade-up">
-      <h3>What happens next</h3>
-      <ol class="step-list">
-        <li>
-          <strong>You send this form</strong>
-          Tell us who's accountable, what's stalled, and roughly where you are. Detail helps — it makes the first conversation useful instead of exploratory.
-        </li>
-        <li>
-          <strong>We reply within one business day</strong>
-          A short note back to arrange the conversation, or an honest explanation of why this isn't the right fit for your situation. In a hurry? <a href="#book">Book a time directly</a> instead.
-        </li>
-        <li>
-          <strong>The readiness conversation</strong>
-          Sixty minutes on your AI posture, your board's expectations, and the gap between them. You leave with a clearer read on your position whether or not you engage.
-        </li>
-      </ol>
-      <p class="aside-note">Engagements are limited. We work with one executive team at a time.</p>
-    </aside>
+    <!-- ─── PATH 1: FORM ─── -->
+    <div class="choice-col">
+      <div class="col-head fade-up">
+        <h2 class="col-title">Send a <em>message</em></h2>
+        <p class="col-sub">Tell us what's driving this and we'll reply within one business day. Best if your situation needs context before a call.</p>
+      </div>
 
-    <!-- FORM -->
-    <div class="form-shell fade-up" id="form">
+      <div class="form-shell fade-up" id="form">
 
       <form id="contactForm" novalidate>
 
@@ -566,6 +562,20 @@
         <p>Thank you. You'll have a reply within one business day at the address you provided, with times for the readiness conversation.</p>
       </div>
 
+      </div>
+    </div>
+
+    <!-- ─── PATH 2: BOOK ─── -->
+    <div class="choice-col" id="book">
+      <div class="col-head fade-up">
+        <h2 class="col-title">Or book a time <em>now</em></h2>
+        <p class="col-sub">Skip the back-and-forth and take a slot that suits you. Same 60-minute conversation — you're just choosing the time yourself.</p>
+      </div>
+
+      <div class="calendly-wrapper fade-up">
+        <div class="calendly-inline-widget"
+             data-url="https://calendly.com/30minutechat/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=111111&text_color=f5f5f0&primary_color=c9a84c"></div>
+      </div>
     </div>
 
   </div>
@@ -573,20 +583,25 @@
 
 <hr class="gold-rule">
 
-<!-- BOOKING -->
-<section class="booking-section" id="book">
-  <div class="booking-inner">
-    <div class="booking-head">
-      <div>
-        <p class="section-eyebrow fade-up">Or book directly</p>
-        <h2 class="section-headline fade-up">Take a time that <em>suits you.</em></h2>
-      </div>
-      <p class="section-body fade-up">If you'd rather skip the back-and-forth, choose a slot below. Same conversation, same 60 minutes — you'll just be picking the time yourself.</p>
-    </div>
-    <div class="calendly-wrapper fade-up">
-      <div class="calendly-inline-widget"
-           data-url="https://calendly.com/30minutechat/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=111111&text_color=f5f5f0&primary_color=c9a84c"></div>
-    </div>
+<!-- WHAT HAPPENS NEXT -->
+<section class="steps-section">
+  <div class="steps-inner">
+    <p class="section-eyebrow fade-up">What happens next</p>
+    <ol class="step-list fade-up">
+      <li>
+        <strong>You get in touch</strong>
+        Either way works. The form gives us context up front; booking straight in gets the conversation on the calendar today.
+      </li>
+      <li>
+        <strong>We confirm within one business day</strong>
+        A short note to lock the time, or an honest explanation of why this isn't the right fit for your situation.
+      </li>
+      <li>
+        <strong>The readiness conversation</strong>
+        Sixty minutes on your AI posture, your board's expectations, and the gap between them. You leave with a clearer read on your position whether or not you engage.
+      </li>
+    </ol>
+    <p class="aside-note fade-up">Engagements are limited. We work with one executive team at a time.</p>
   </div>
 </section>
 
