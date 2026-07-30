@@ -381,14 +381,20 @@
   .booking-head .section-headline { margin-bottom: 0; max-width: 14ch; }
   .booking-head .section-body { max-width: 46ch; }
 
+  /* Calendly centres its own card inside the iframe, so a full 1200px frame
+     leaves the unselected state marooned in empty space. ~1040px keeps the
+     frame close to the card while still fitting the two-column
+     date + time-slot view once a day is picked. */
   .calendly-wrapper {
     border: 1px solid var(--rule);
     background: var(--black);
     overflow: hidden;
-    min-height: 680px;
+    max-width: 1040px;
+    margin: 0 auto;
+    min-height: 720px;
   }
 
-  .calendly-inline-widget { min-width: 100%; height: 680px; }
+  .calendly-inline-widget { min-width: 100%; height: 720px; }
 
   /* ── FOOTER ── */
   footer {
