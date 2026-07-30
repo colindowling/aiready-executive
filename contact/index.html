@@ -425,6 +425,10 @@
        layout exists to solve. On narrow screens put booking first, since
        "just grab a slot" is the lower-friction path on a phone. */
     .choice-col#book { order: -1; }
+    /* booking now leads, so the "Or" that pairs the two columns on desktop
+       would dangle at the top of the page */
+    .or-word { display: none; }
+    .book-word { text-transform: capitalize; }
     .col-head { min-height: 0; margin-bottom: 1.4rem; }
     .form-shell { padding: 2rem 1.5rem; }
     .cf-grid { grid-template-columns: 1fr; gap: 1.6rem; }
@@ -568,7 +572,7 @@
     <!-- ─── PATH 2: BOOK ─── -->
     <div class="choice-col" id="book">
       <div class="col-head fade-up">
-        <h2 class="col-title">Or book a time <em>now</em></h2>
+        <h2 class="col-title"><span class="or-word">Or </span><span class="book-word">book</span> a time <em>now</em></h2>
         <p class="col-sub">Skip the back-and-forth and take a slot that suits you. Same 60-minute conversation — you're just choosing the time yourself.</p>
       </div>
 
