@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | AIReady Executive</title>
+<meta name="description" content="Start with a 60-minute readiness conversation. No pitch, no deck — a direct conversation about where your organization stands and whether this engagement is the right fit.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://theaireadyexecutive.com/contact/">
+<meta name="theme-color" content="#080808">
+<meta name="author" content="AIReady Executive">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AIReady Executive">
+<meta property="og:title" content="Contact | AIReady Executive">
+<meta property="og:description" content="Start with a 60-minute readiness conversation. No pitch, no deck — a direct conversation about where your organization stands.">
+<meta property="og:url" content="https://theaireadyexecutive.com/contact/">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Contact | AIReady Executive">
+<meta name="twitter:description" content="Start with a 60-minute readiness conversation. No pitch, no deck — a direct conversation about where your organization stands.">
+<!-- Favicon -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<!-- Calendly -->
+<link rel="preconnect" href="https://assets.calendly.com">
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black:   #080808;
+    --off-black: #111111;
+    --white:   #F5F5F0;
+    --gold:    #C9A84C;
+    --gold-dim: #8A6F33;
+    --rule:    rgba(201,168,76,0.18);
+    --text-dim: rgba(245,245,240,0.66);
+    --text-mid: rgba(245,245,240,0.86);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background: rgba(8,8,8,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-logo {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 300;
+    font-size: 0.8rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-cta {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid var(--gold-dim);
+    padding: 0.5rem 1.4rem;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+  /* ── TYPOGRAPHY ── */
+  .section-eyebrow {
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+
+  .section-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.15;
+    margin-bottom: 1.5rem;
+  }
+
+  .section-headline em { font-style: italic; color: var(--gold); }
+
+  .section-body {
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--text-mid);
+    max-width: 58ch;
+    line-height: 1.85;
+  }
+
+  .gold-rule {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 0;
+  }
+
+  /* ── PAGE HEADER ── */
+  .contact-header {
+    padding: 11rem 4rem 4.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .contact-header .section-headline { max-width: 18ch; }
+
+  /* ── CONTACT BODY ── */
+  .contact-section { padding: 5rem 4rem 7rem; }
+
+  .contact-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  /* left rail */
+  .contact-aside h3 {
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+  }
+
+  .step-list { list-style: none; counter-reset: step; }
+
+  .step-list li {
+    counter-increment: step;
+    position: relative;
+    padding-left: 3rem;
+    padding-bottom: 2.2rem;
+    color: var(--text-mid);
+    font-size: 0.95rem;
+    line-height: 1.8;
+  }
+
+  .step-list li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0; top: 0.1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: var(--gold);
+    width: 2rem;
+    height: 2rem;
+    border: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-list li strong {
+    display: block;
+    color: var(--white);
+    font-weight: 400;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .step-list li a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color 0.2s;
+  }
+
+  .step-list li a:hover { border-bottom-color: var(--gold); }
+
+  .aside-note {
+    border-left: 1px solid var(--gold-dim);
+    padding: 0.4rem 0 0.4rem 1.5rem;
+    margin-top: 1rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+
+  /* ── FORM ── */
+  .form-shell {
+    border: 1px solid var(--rule);
+    background: var(--off-black);
+    padding: 3rem;
+  }
+
+  .cf-row { margin-bottom: 1.6rem; }
+
+  .cf-row label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 0.6rem;
+  }
+
+  .cf-row label .req { color: var(--gold); }
+
+  .cf-row input,
+  .cf-row select,
+  .cf-row textarea {
+    width: 100%;
+    background: var(--black);
+    border: 1px solid var(--rule);
+    color: var(--white);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 300;
+    font-size: 0.95rem;
+    padding: 0.85rem 1rem;
+    transition: border-color 0.2s;
+  }
+
+  .cf-row textarea { resize: vertical; min-height: 130px; line-height: 1.7; }
+
+  .cf-row input::placeholder,
+  .cf-row textarea::placeholder { color: rgba(245,245,240,0.3); }
+
+  .cf-row input:focus,
+  .cf-row select:focus,
+  .cf-row textarea:focus {
+    outline: none;
+    border-color: var(--gold-dim);
+  }
+
+  .cf-row select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23C9A84C' stroke-width='1.5'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 16px;
+    padding-right: 2.8rem;
+    cursor: pointer;
+  }
+
+  .cf-row select option { background: var(--off-black); color: var(--white); }
+
+  .cf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.6rem;
+  }
+
+  .cf-grid .cf-row { margin-bottom: 0; }
+
+  /* honeypot — visually hidden, not display:none (bots read that) */
+  .cf-hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px; height: 1px;
+    overflow: hidden;
+  }
+
+  .cf-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: none;
+    padding: 1rem 2.5rem;
+    margin-top: 0.8rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+
+  .cf-submit:hover:not(:disabled) { opacity: 0.85; }
+  .cf-submit:disabled { opacity: 0.5; cursor: default; }
+
+  .cf-fineprint {
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--text-dim);
+    letter-spacing: 0.04em;
+    margin-top: 1.4rem;
+    line-height: 1.7;
+  }
+
+  .cf-error {
+    display: none;
+    border-left: 2px solid #C4544C;
+    padding: 0.7rem 0 0.7rem 1rem;
+    margin-top: 1.4rem;
+    font-size: 0.85rem;
+    color: #E8A9A3;
+  }
+
+  .cf-error.active { display: block; }
+
+  /* success state */
+  .cf-success { display: none; }
+  .cf-success.active { display: block; }
+
+  .cf-success .tick {
+    width: 2.6rem; height: 2.6rem;
+    border: 1px solid var(--gold-dim);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold);
+    margin-bottom: 1.8rem;
+  }
+
+  .cf-success h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 2rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .cf-success p {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.85;
+    max-width: 42ch;
+  }
+
+  /* ── BOOKING ── */
+  .booking-section {
+    background: var(--off-black);
+    padding: 6rem 4rem 7rem;
+  }
+
+  .booking-inner { max-width: 1200px; margin: 0 auto; }
+
+  .booking-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: end;
+    margin-bottom: 3.5rem;
+  }
+
+  .booking-head .section-headline { margin-bottom: 0; max-width: 14ch; }
+  .booking-head .section-body { max-width: 46ch; }
+
+  .calendly-wrapper {
+    border: 1px solid var(--rule);
+    background: var(--black);
+    overflow: hidden;
+    min-height: 680px;
+  }
+
+  .calendly-inline-widget { min-width: 100%; height: 680px; }
+
+  /* ── FOOTER ── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.68rem;
+    font-weight: 300;
+    color: var(--text-dim);
+  }
+
+  footer .nav-logo { color: var(--text-dim); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 1.2rem 1.5rem; }
+    .contact-header { padding: 8rem 1.5rem 3rem; }
+    .contact-section { padding: 3rem 1.5rem 5rem; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3.5rem; }
+    .form-shell { padding: 2rem 1.5rem; }
+    .cf-grid { grid-template-columns: 1fr; gap: 1.6rem; }
+    .booking-section { padding: 4rem 1.5rem 5rem; }
+    .booking-head { grid-template-columns: 1fr; gap: 1.5rem; align-items: start; margin-bottom: 2.5rem; }
+    .calendly-wrapper, .calendly-inline-widget { min-height: 1000px; height: 1000px; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+  }
+
+  /* ── FADE IN ── */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .fade-up { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">AIReady <span>Executive</span></a>
+  <a href="#form" class="nav-cta">Apply Now</a>
+</nav>
+
+<!-- HEADER -->
+<header class="contact-header">
+  <p class="section-eyebrow fade-up">Contact</p>
+  <h1 class="section-headline fade-up">Request your <em>readiness conversation.</em></h1>
+  <p class="section-body fade-up">No pitch. No deck. A direct conversation about where your organization stands, what's blocking you, and whether this engagement is the right fit. If it isn't, we'll tell you that plainly. Send the form below, or book a time directly.</p>
+</header>
+
+<hr class="gold-rule">
+
+<!-- CONTACT -->
+<div class="contact-section">
+  <div class="contact-inner">
+
+    <!-- LEFT RAIL -->
+    <aside class="contact-aside fade-up">
+      <h3>What happens next</h3>
+      <ol class="step-list">
+        <li>
+          <strong>You send this form</strong>
+          Tell us who's accountable, what's stalled, and roughly where you are. Detail helps — it makes the first conversation useful instead of exploratory.
+        </li>
+        <li>
+          <strong>We reply within one business day</strong>
+          A short note back to arrange the conversation, or an honest explanation of why this isn't the right fit for your situation. In a hurry? <a href="#book">Book a time directly</a> instead.
+        </li>
+        <li>
+          <strong>The readiness conversation</strong>
+          Sixty minutes on your AI posture, your board's expectations, and the gap between them. You leave with a clearer read on your position whether or not you engage.
+        </li>
+      </ol>
+      <p class="aside-note">Engagements are limited. We work with one executive team at a time.</p>
+    </aside>
+
+    <!-- FORM -->
+    <div class="form-shell fade-up" id="form">
+
+      <form id="contactForm" novalidate>
+
+        <div class="cf-grid" style="margin-bottom:1.6rem;">
+          <div class="cf-row">
+            <label for="cname">Name <span class="req">*</span></label>
+            <input type="text" id="cname" name="name" placeholder="First and last name" required autocomplete="name">
+          </div>
+          <div class="cf-row">
+            <label for="cemail">Work email <span class="req">*</span></label>
+            <input type="email" id="cemail" name="email" placeholder="you@company.com" required autocomplete="email">
+          </div>
+        </div>
+
+        <div class="cf-grid" style="margin-bottom:1.6rem;">
+          <div class="cf-row">
+            <label for="ccompany">Company <span class="req">*</span></label>
+            <input type="text" id="ccompany" name="company" placeholder="Company name" required autocomplete="organization">
+          </div>
+          <div class="cf-row">
+            <label for="crole">Your role <span class="req">*</span></label>
+            <select id="crole" name="role" required>
+              <option value="" selected disabled>Select one</option>
+              <option>CEO / President</option>
+              <option>Board Member</option>
+              <option>COO</option>
+              <option>CFO / Strategy Lead</option>
+              <option>Other C-Suite</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="cf-grid" style="margin-bottom:1.6rem;">
+          <div class="cf-row">
+            <label for="csize">Company size</label>
+            <select id="csize" name="company_size">
+              <option value="" selected disabled>Select one</option>
+              <option>Under 100 employees</option>
+              <option>100–500 employees</option>
+              <option>500–2,000 employees</option>
+              <option>2,000+ employees</option>
+            </select>
+          </div>
+          <div class="cf-row">
+            <label for="ctier">Engagement of interest</label>
+            <select id="ctier" name="tier">
+              <option value="" selected disabled>Select one</option>
+              <option>Solo Executive — $20,000</option>
+              <option>Leadership Trio — $45,000</option>
+              <option>Full C-Suite — $75,000</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="cf-row">
+          <label for="cmessage">What's driving this? <span class="req">*</span></label>
+          <textarea id="cmessage" name="message" placeholder="Board pressure, a stalled pilot, an investor question you couldn't answer — whatever prompted you to reach out." rows="5" required></textarea>
+        </div>
+
+        <!-- honeypot -->
+        <div class="cf-hp" aria-hidden="true">
+          <label for="cwebsite">Leave this field empty</label>
+          <input type="text" id="cwebsite" name="_gotcha" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button type="submit" class="cf-submit" id="cfSubmitBtn">
+          <span>Request Conversation</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+
+        <p class="cf-fineprint">Your details are used only to respond to this enquiry. No list, no newsletter, no sharing with third parties.</p>
+
+        <div class="cf-error" id="cfError" role="alert"></div>
+
+      </form>
+
+      <div class="cf-success" id="cfSuccess" role="status">
+        <div class="tick" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <h3>Request received.</h3>
+        <p>Thank you. You'll have a reply within one business day at the address you provided, with times for the readiness conversation.</p>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<hr class="gold-rule">
+
+<!-- BOOKING -->
+<section class="booking-section" id="book">
+  <div class="booking-inner">
+    <div class="booking-head">
+      <div>
+        <p class="section-eyebrow fade-up">Or book directly</p>
+        <h2 class="section-headline fade-up">Take a time that <em>suits you.</em></h2>
+      </div>
+      <p class="section-body fade-up">If you'd rather skip the back-and-forth, choose a slot below. Same conversation, same 60 minutes — you'll just be picking the time yourself.</p>
+    </div>
+    <div class="calendly-wrapper fade-up">
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/30minutechat/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=111111&text_color=f5f5f0&primary_color=c9a84c"></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="/" class="nav-logo">AIReady <span>Executive</span></a>
+  <div>© 2026 AIReady Executive. All rights reserved.</div>
+</footer>
+
+<script>
+  // fade-up on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // ====================================================================
+  // Contact form → Formspree
+  // ====================================================================
+  const CONTACT_ENDPOINT = 'https://formspree.io/f/xjglkdyp';
+
+  const cForm    = document.getElementById('contactForm');
+  const cSuccess = document.getElementById('cfSuccess');
+  const cError   = document.getElementById('cfError');
+  const cBtn     = document.getElementById('cfSubmitBtn');
+
+  function cfShowError(msg) { cError.textContent = msg; cError.classList.add('active'); }
+  function cfClearError() { cError.classList.remove('active'); cError.textContent = ''; }
+
+  if (cForm) {
+    cForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      cfClearError();
+
+      const payload = {
+        name:         cForm.name.value.trim(),
+        email:        cForm.email.value.trim(),
+        company:      cForm.company.value.trim(),
+        role:         cForm.role.value,
+        company_size: cForm.company_size.value,
+        tier:         cForm.tier.value,
+        message:      cForm.message.value.trim(),
+        _gotcha:      cForm._gotcha.value,
+        // This form shares a Formspree inbox with rncld.com, which posts
+        // source:'contact-page'. Keep these fields distinct so AIReady
+        // enquiries are identifiable at a glance.
+        _subject:     'AIREADY EXECUTIVE — new enquiry from ' + cForm.name.value.trim(),
+        site:         'theaireadyexecutive.com',
+        source:       'aiready-executive-contact'
+      };
+
+      if (!payload.name || !payload.email || !payload.company || !payload.role || !payload.message) {
+        cfShowError('Please complete the required fields.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+        cfShowError('Please enter a valid email address.');
+        return;
+      }
+
+      cBtn.disabled = true;
+      cBtn.querySelector('span').textContent = 'Sending…';
+
+      try {
+        const res = await fetch(CONTACT_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (res.ok) {
+          cForm.style.display = 'none';
+          cSuccess.classList.add('active');
+          cSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (typeof gtag === 'function') {
+            gtag('event', 'contact_form_submit', { form_location: 'aiready-contact-page' });
+          }
+        } else {
+          const data = await res.json().catch(() => ({}));
+          cfShowError(data?.error || 'Something went wrong on our end. Please try again in a moment.');
+          cBtn.disabled = false;
+          cBtn.querySelector('span').textContent = 'Request Conversation';
+        }
+      } catch (err) {
+        cfShowError('Network error — your message did not send. Please check your connection and try again.');
+        cBtn.disabled = false;
+        cBtn.querySelector('span').textContent = 'Request Conversation';
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
