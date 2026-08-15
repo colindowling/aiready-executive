@@ -1291,7 +1291,7 @@
       if (window.Calendly && typeof window.Calendly.initPopupWidget === 'function') {
         e.preventDefault();
         window.Calendly.initPopupWidget({
-          url: 'https://calendly.com/30minutechat/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=111111&text_color=f5f5f0&primary_color=c9a84c'
+          url: 'https://calendly.com/30minutechat/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=111111&text_color=f5f5f0&primary_color=c9a84c&utm_source=aireadyexecutive&utm_medium=website&utm_campaign=home_cta'
         });
         if (typeof gtag === 'function') {
           gtag('event', 'calendly_open', { location: 'home-cta' });
@@ -1300,5 +1300,18 @@
     });
   }
 </script>
+
+  <script>
+    // Calendly conversion tracking. calendly.event_scheduled is the booking itself.
+    window.addEventListener('message', function(e) {
+      if (!e || !e.data || typeof e.data.event !== 'string') return;
+      var ev = e.data.event;
+      if (ev.lastIndexOf('calendly.', 0) !== 0) return;
+      if (typeof gtag !== 'function') return;
+      if (ev === 'calendly.event_scheduled') {
+        gtag('event', 'meeting_booked', { location: 'home-cta', venture: 'aireadyexecutive' });
+      }
+    });
+  </script>
 </body>
 </html>
