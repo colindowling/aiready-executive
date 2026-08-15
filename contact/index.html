@@ -578,7 +578,7 @@
 
       <div class="calendly-wrapper fade-up">
         <div class="calendly-inline-widget"
-             data-url="https://calendly.com/30minutechat/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=111111&text_color=f5f5f0&primary_color=c9a84c"></div>
+             data-url="https://calendly.com/30minutechat/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=111111&text_color=f5f5f0&primary_color=c9a84c&utm_source=aireadyexecutive&utm_medium=website&utm_campaign=contact_page"></div>
       </div>
     </div>
 
@@ -701,5 +701,21 @@
   }
 </script>
 
+
+  <script>
+    // Calendly conversion tracking. calendly.event_scheduled is the booking itself.
+    window.addEventListener('message', function(e) {
+      if (!e || !e.data || typeof e.data.event !== 'string') return;
+      var ev = e.data.event;
+      if (ev.lastIndexOf('calendly.', 0) !== 0) return;
+      if (typeof gtag !== 'function') return;
+      if (ev === 'calendly.date_and_time_selected') {
+        gtag('event', 'calendly_time_selected', { location: 'aiready-contact-page', venture: 'aireadyexecutive' });
+      }
+      if (ev === 'calendly.event_scheduled') {
+        gtag('event', 'meeting_booked', { location: 'aiready-contact-page', venture: 'aireadyexecutive' });
+      }
+    });
+  </script>
 </body>
 </html>
