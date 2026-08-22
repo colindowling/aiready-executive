@@ -427,6 +427,82 @@
     margin-bottom: 0.4rem;
   }
 
+  .icp-band {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 3rem 5rem;
+  }
+
+  .icp-band-inner {
+    border-left: 2px solid var(--gold);
+    padding: 2rem 2.5rem;
+    background: var(--off-black);
+  }
+
+  .icp-band .icp-eyebrow {
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .icp-band h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+    color: var(--white);
+    margin-bottom: 0.9rem;
+    line-height: 1.25;
+  }
+
+  .icp-band p {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: var(--text-mid);
+  }
+
+  .icp-band ul {
+    list-style: none;
+    margin: 1.4rem 0 0;
+    padding: 0;
+  }
+
+  .icp-band li {
+    position: relative;
+    padding-left: 1.7rem;
+    font-size: 0.86rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--text-mid);
+    margin-bottom: 0.7rem;
+  }
+
+  .icp-band li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.42rem;
+    width: 0.65rem;
+    height: 0.35rem;
+    border-left: 1.5px solid var(--gold);
+    border-bottom: 1.5px solid var(--gold);
+    transform: rotate(-45deg);
+  }
+
+  .icp-band .icp-foot {
+    margin-top: 1.1rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 860px) {
+    .icp-band { padding: 0 1.5rem 4rem; }
+    .icp-band-inner { padding: 1.6rem 1.5rem; }
+  }
+
   /* ── CTA SECTION ── */
   .cta-section {
     text-align: center;
@@ -626,10 +702,22 @@
 
   .pricing-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 0;
     margin-top: 4rem;
     border: 1px solid var(--rule);
+  }
+
+  .pricing-price .pricing-prefix {
+    display: block;
+    font-family: 'Manrope', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-left: 0;
+    margin-bottom: 0.5rem;
   }
 
   .pricing-card {
@@ -656,6 +744,10 @@
     padding: 0.25rem 0.75rem;
     display: inline-block;
     margin-bottom: 1.5rem;
+  }
+
+  .pricing-badge--ghost {
+    visibility: hidden;
   }
 
   .pricing-name {
@@ -1051,68 +1143,52 @@
 <!-- PRICING -->
 <section class="pricing-section" id="pricing">
   <p class="section-eyebrow fade-up">Investment</p>
-  <h2 class="section-headline fade-up">One engagement. <em>Three entry points.</em></h2>
-  <p class="section-body fade-up">Scoped to where you are and what you need. Every tier delivers the same 30-day timeline and the same quality of thinking — the difference is depth, access, and what we build together.</p>
+  <h2 class="section-headline fade-up">One engagement. <em>Two entry points.</em></h2>
+  <p class="section-body fade-up">Both tiers deliver the same 30-day timeline and the same quality of thinking. The difference is urgency. Pricing here is set against your exposure and the stakes of the room you are walking into, not your company&rsquo;s revenue or headcount.</p>
 
   <div class="pricing-grid fade-up">
 
     <div class="pricing-card">
-      <div class="pricing-name">Solo Executive</div>
-      <div class="pricing-price">$20,000<span>flat</span></div>
-      <div class="pricing-duration">30 days · 1 executive</div>
+      <div class="pricing-badge pricing-badge--ghost" aria-hidden="true">&nbsp;</div>
+      <div class="pricing-name">Standard</div>
+      <div class="pricing-price"><span class="pricing-prefix">Starting at</span>$15,000<span>flat</span></div>
+      <div class="pricing-duration">30 days</div>
       <hr class="pricing-divider">
       <ul class="pricing-features">
-        <li>Executive intake & diagnostic interview (90 min)</li>
+        <li>Executive intake &amp; diagnostic interview (90 min)</li>
         <li>AI readiness assessment across 5 dimensions</li>
         <li>Outcomes-first AI strategy built for your org</li>
-        <li>Tool & vendor evaluation framework</li>
-        <li>90-day execution blueprint with owners & milestones</li>
+        <li>Tool &amp; vendor evaluation framework</li>
+        <li>90-day execution blueprint with owners &amp; milestones</li>
         <li>Board-ready AI narrative document</li>
-        <li>Final working session & delivery walkthrough</li>
-        <li>30 days async Q&A access post-delivery</li>
+        <li>Final working session &amp; delivery walkthrough</li>
+        <li>30 days async Q&amp;A access post-delivery</li>
       </ul>
-      <div class="pricing-note">The complete engagement for a single executive who needs to move fast and own the strategy personally.</div>
+      <div class="pricing-note">For executives without an immediate board deadline who want to get ahead of the AI conversation before it becomes urgent. Scopes to $25,000 depending on the complexity of the organization.</div>
     </div>
 
     <div class="pricing-card featured">
-      <div class="pricing-badge">Most Requested</div>
-      <div class="pricing-name">Leadership Trio</div>
-      <div class="pricing-price">$45,000<span>flat</span></div>
-      <div class="pricing-duration">35 days · up to 3 executives</div>
+      <div class="pricing-badge">Board-Ready</div>
+      <div class="pricing-name">Accelerated</div>
+      <div class="pricing-price"><span class="pricing-prefix">Starting at</span>$35,000<span>flat</span></div>
+      <div class="pricing-duration">30 days · deadline-driven</div>
       <hr class="pricing-divider">
       <ul class="pricing-features">
-        <li>Everything in Solo Executive</li>
-        <li>Individual intake sessions with all 3 executives</li>
-        <li>Cross-functional alignment workshop (half day)</li>
-        <li>Role-specific AI briefings per executive</li>
-        <li>Unified strategy that accounts for functional tensions</li>
-        <li>45 days async Q&A access post-delivery</li>
-        <li>One board presentation prep session</li>
+        <li>Everything in Standard</li>
+        <li>Engagement sequenced backward from your board date</li>
+        <li>Priority access &mdash; sessions scheduled around your calendar, not ours</li>
+        <li>Board presentation prep sessions and dry run</li>
+        <li>Anticipated-objection brief: the questions your board will actually ask</li>
+        <li>Investor-update language you can lift directly</li>
+        <li>Cross-functional alignment workshop where multiple executives are involved</li>
+        <li>60 days async Q&amp;A access post-delivery, through the board meeting and after</li>
       </ul>
-      <div class="pricing-note">For leadership teams that need to move together. Alignment at the top before strategy hits the organization.</div>
-    </div>
-
-    <div class="pricing-card">
-      <div class="pricing-name">Full C-Suite</div>
-      <div class="pricing-price">$75,000<span>flat</span></div>
-      <div class="pricing-duration">45 days · up to 5 executives</div>
-      <hr class="pricing-divider">
-      <ul class="pricing-features">
-        <li>Everything in Leadership Trio</li>
-        <li>Individual sessions with all 5 C-suite members</li>
-        <li>Full-day executive alignment offsite — 6 hours, starting at $6,000 (virtual or in-person)</li>
-        <li>Org-wide AI culture change architecture</li>
-        <li>Manager-level briefing framework for cascade</li>
-        <li>60 days async Q&A access post-delivery</li>
-        <li>Two board presentation prep sessions</li>
-        <li>30-day check-in session post-implementation</li>
-      </ul>
-      <div class="pricing-note">Enterprise-level alignment. Five executives, one unified strategy, and a cascade plan the whole organization can follow.</div>
+      <div class="pricing-note">For executives with a specific board date or investor update on the calendar where AI strategy will be scrutinized. Scopes to $60,000 depending on stakes, timeline, and the number of executives in the room.</div>
     </div>
 
   </div>
 
-  <p class="pricing-disclaimer fade-up">All engagements are fixed-fee. No hourly billing, no scope creep, no surprises. A 50% deposit is required to begin; the remainder is due upon delivery of final materials. Custom scopes available for portfolio companies and multi-entity organizations — contact us to discuss.</p>
+  <p class="pricing-disclaimer fade-up">All engagements are fixed-fee. No hourly billing, no scope creep, no surprises. Your exact figure is fixed in writing before we begin and does not move after that. A 50% deposit is required to begin; the remainder is due upon delivery of final materials. Optional add-on: a full-day executive alignment offsite, 6 hours, starting at $6,000 virtual or in-person. Custom scopes available for multi-executive engagements, portfolio companies, and multi-entity organizations — contact us to discuss.</p>
 </section>
 
 <hr class="gold-rule">
@@ -1146,6 +1222,28 @@
         <strong>CFO / Strategy Lead</strong>
         Approve AI investments with a framework for outcomes, not vendor enthusiasm. Govern what gets funded.
       </div>
+    </div>
+  </div>
+
+  <div class="icp-band fade-up">
+    <div class="icp-band-inner">
+      <div class="icp-eyebrow">Is this you?</div>
+      <h3>Not only for software-company executives.</h3>
+      <p>
+        A COO at a manufacturing firm or an IT services CEO facing board questions about AI adoption
+        is squarely in scope &mdash; arguably a stronger fit than a tech company that already has
+        in-house AI fluency. SaaS, tech-enabled services, manufacturing, IT services, and any
+        organization selling to other businesses.
+      </p>
+      <ul>
+        <li>You have a CRM &mdash; HubSpot, Salesforce, Pipedrive, or comparable.</li>
+        <li>Your team sells through outbound or inbound email and phone conversations.</li>
+        <li>You have a defined sales process, even an informal one.</li>
+      </ul>
+      <p class="icp-foot">
+        Tier is set by urgency and exposure, not company size. A $500M manufacturer with a calm board
+        and a $50M IT services firm with a nervous one can land in opposite tiers.
+      </p>
     </div>
   </div>
 </div>
@@ -1202,7 +1300,7 @@
           <span class="faq-icon" aria-hidden="true"></span>
         </button>
         <div class="faq-answer">
-          <div class="faq-answer-inner">We've designed the engagement to be light on your calendar by intention — executives don't have 10 hours a week to give a consultant. For the Solo Executive engagement, expect roughly 4–5 hours of your time across the full 30 days: the initial intake session, one or two working sessions during the strategy build, and the final delivery walkthrough. For the Leadership Trio and Full C-Suite tiers, individual executive time stays similar — the additional time is in the cross-functional alignment sessions, which are structured and facilitated so they don't sprawl.
+          <div class="faq-answer-inner">We've designed the engagement to be light on your calendar by intention — executives don't have 10 hours a week to give a consultant. Expect roughly 4–5 hours of your time across the full 30 days: the initial intake session, one or two working sessions during the strategy build, and the final delivery walkthrough. On Board-Ready engagements, individual executive time stays similar — the additional time is in board prep and, where more than one executive is involved, the cross-functional alignment sessions, which are structured and facilitated so they don't sprawl.
           </div>
         </div>
       </div>
