@@ -652,12 +652,14 @@
         tier:         cForm.tier.value,
         message:      cForm.message.value.trim(),
         _gotcha:      cForm._gotcha.value,
-        // This form shares a Formspree inbox with rncld.com, which posts
-        // source:'contact-page'. Keep these fields distinct so AIReady
-        // enquiries are identifiable at a glance.
+        // This form shares a Formspree inbox with the other properties, so
+        // every submission is stamped with property / site / source and a
+        // prefixed subject line to stay identifiable at a glance.
         _subject:     'AIREADY EXECUTIVE — new enquiry from ' + cForm.name.value.trim(),
+        property:     'AIREADY EXECUTIVE',
         site:         'theaireadyexecutive.com',
-        source:       'aiready-executive-contact'
+        source:       'aiready-executive-contact',
+        page_url:     window.location.href
       };
 
       if (!payload.name || !payload.email || !payload.company || !payload.role || !payload.message) {
