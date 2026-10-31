@@ -25,6 +25,13 @@ SITE = "https://theaireadyexecutive.com"
 ORG_ID = f"{SITE}/#organization"
 PERSON_ID = f"{SITE}/about/#colin"
 PERSON_NAME = "Colin Dowling"
+PERSON_SAME_AS = [
+    "https://www.linkedin.com/in/colin-dowling-4598113",
+    "https://modernbusiness.life/",
+    "https://rncld.com/",
+    "https://www.bofubaby.com/",
+    "https://www.withants.com/",
+]
 ORG_DESCRIPTION = (
     "A fixed-fee, fixed-timeline advisory engagement that takes C-suite leaders "
     "and boards from AI gap to boardroom-ready in 30 days — executive alignment "
@@ -435,6 +442,7 @@ def person_node() -> dict:
         "url": f"{SITE}/about/",
         "jobTitle": "Senior practitioner",
         "worksFor": {"@id": ORG_ID},
+        "sameAs": list(PERSON_SAME_AS),
     }
 
 

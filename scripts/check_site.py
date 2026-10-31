@@ -13,13 +13,16 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://theaireadyexecutive.com"
 ALLOWED_PRICES = {"0", "20000", "45000", "75000"}
 SITE_HOST = "https://theaireadyexecutive.com"
-OTHER_SITE_MARKERS = (
-    "rncld.com",
-    "bofubaby.com",
-    "withants.com",
+ALLOWED_SAME_AS = [
+    "https://www.linkedin.com/in/colin-dowling-4598113",
+    "https://modernbusiness.life/",
+    "https://rncld.com/",
+    "https://www.bofubaby.com/",
+    "https://www.withants.com/",
+]
+LEFTOVER_COPY_MARKERS = (
     "goforotto.com",
     "modernbusinesslife.com",
-    "linkedin.com",
     "RAINCLOUD",
     "Raincloud",
     "Dark Matter",
@@ -123,17 +126,17 @@ def main() -> int:
             except json.JSONDecodeError as exc:
                 errors.append(f"{rel}: invalid JSON-LD ({exc})")
                 continue
-            for marker in OTHER_SITE_MARKERS:
+            for marker in LEFTOVER_COPY_MARKERS:
                 if marker in block:
-                    errors.append(f"{rel}: schema contains {marker}")
+                    errors.append(f"{rel}: schema contains leftover copy {marker}")
             nodes = data.get("@graph", [data])
             for node in nodes:
                 graph_types.extend(types_of(node))
                 if "Person" in types_of(node):
                     if node.get("name") != "Colin Dowling":
                         errors.append(f"{rel}: Person name is not Colin Dowling")
-                    if "sameAs" in node:
-                        errors.append(f"{rel}: Person schema must not list other-site sameAs URLs")
+                    if list(node.get("sameAs") or []) != ALLOWED_SAME_AS:
+                        errors.append(f"{rel}: Person sameAs is not Colin's profile list")
                 for field in ("@id", "url", "item", "mainEntityOfPage", "image", "thumbnailUrl", "embedUrl"):
                     value = node.get(field)
                     values = value if isinstance(value, list) else [value]
@@ -246,9 +249,9 @@ def main() -> int:
         if not url.startswith(SITE_HOST):
             errors.append(f"llms.txt URL is not on {SITE_HOST}: {url}")
     template = (ROOT / "scripts" / "build_blog.py").read_text(encoding="utf-8")
-    for marker in OTHER_SITE_MARKERS:
+    for marker in LEFTOVER_COPY_MARKERS:
         if marker in template:
-            errors.append(f"blog template contains {marker}")
+            errors.append(f"blog template contains leftover copy {marker}")
     for canonical in canonicals:
         if canonical not in locs:
             errors.append(f"canonical missing from sitemap: {canonical}")
