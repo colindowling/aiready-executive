@@ -12,13 +12,19 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SITE = "https://theaireadyexecutive.com"
 ALLOWED_PRICES = {"0", "20000", "45000", "75000"}
-ALLOWED_SAME_AS = {
-    "https://www.linkedin.com/in/colin-dowling-4598113",
-    "https://modernbusiness.life/",
-    "https://rncld.com/",
-    "https://www.bofubaby.com/",
-    "https://www.withants.com/",
-}
+SITE_HOST = "https://theaireadyexecutive.com"
+OTHER_SITE_MARKERS = (
+    "rncld.com",
+    "bofubaby.com",
+    "withants.com",
+    "goforotto.com",
+    "modernbusinesslife.com",
+    "linkedin.com",
+    "RAINCLOUD",
+    "Raincloud",
+    "Dark Matter",
+    "dark matter",
+)
 FORBIDDEN_ON_NEW = (
     "GoDaddy",
     "Alembic",
@@ -117,15 +123,31 @@ def main() -> int:
             except json.JSONDecodeError as exc:
                 errors.append(f"{rel}: invalid JSON-LD ({exc})")
                 continue
+            for marker in OTHER_SITE_MARKERS:
+                if marker in block:
+                    errors.append(f"{rel}: schema contains {marker}")
             nodes = data.get("@graph", [data])
             for node in nodes:
                 graph_types.extend(types_of(node))
                 if "Person" in types_of(node):
                     if node.get("name") != "Colin Dowling":
                         errors.append(f"{rel}: Person name is not Colin Dowling")
-                    extra = set(node.get("sameAs") or []) - ALLOWED_SAME_AS
-                    if extra:
-                        errors.append(f"{rel}: unexpected sameAs {sorted(extra)}")
+                    if "sameAs" in node:
+                        errors.append(f"{rel}: Person schema must not list other-site sameAs URLs")
+                for field in ("@id", "url", "item", "mainEntityOfPage", "image", "thumbnailUrl", "embedUrl"):
+                    value = node.get(field)
+                    values = value if isinstance(value, list) else [value]
+                    for item in values:
+                        if not isinstance(item, str) or not item.startswith("http"):
+                            continue
+                        if item.startswith("https://schema.org"):
+                            continue
+                        if field == "embedUrl" and item.startswith("https://www.youtube-nocookie.com/"):
+                            continue
+                        if field == "thumbnailUrl" and item.startswith("https://i.ytimg.com/"):
+                            continue
+                        if not item.startswith(SITE_HOST):
+                            errors.append(f"{rel}: schema {field} is not on {SITE_HOST}: {item}")
                 if "FAQPage" in types_of(node):
                     questions = node.get("mainEntity") or []
                     if not 3 <= len(questions) <= 6 and rel.startswith("blog/") and rel != "blog/index.html":
@@ -148,6 +170,13 @@ def main() -> int:
         canonical = re.search(r'<link rel="canonical" href="([^"]+)"', text)
         if canonical:
             canonicals.add(canonical.group(1))
+            if not canonical.group(1).startswith(SITE_HOST):
+                errors.append(f"{rel}: canonical is not on {SITE_HOST}")
+        og_url = re.search(r'<meta property="og:url" content="([^"]+)"', text)
+        if og_url and not og_url.group(1).startswith(SITE_HOST):
+            errors.append(f"{rel}: og:url is not on {SITE_HOST}")
+        if "https://aireadyexecutive.com" in text or "https://www.theaireadyexecutive.com" in text:
+            errors.append(f"{rel}: uses a host other than {SITE_HOST}")
         if 'property="og:image"' not in text:
             errors.append(f"{rel}: missing og:image")
         if rel in NEW_PAGES or rel.startswith("blog/"):
@@ -207,9 +236,19 @@ def main() -> int:
     sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
     locs = re.findall(r"<loc>(.*?)</loc>", sitemap)
     for loc in locs:
+        if not loc.startswith(SITE_HOST):
+            errors.append(f"sitemap loc is not on {SITE_HOST}: {loc}")
         target, _fragment = resolve(loc, ROOT / "sitemap.xml")
         if target is None or not target.is_file():
             errors.append(f"sitemap loc does not resolve: {loc}")
+    llms = (ROOT / "llms.txt").read_text(encoding="utf-8")
+    for url in re.findall(r"https://\S+", llms):
+        if not url.startswith(SITE_HOST):
+            errors.append(f"llms.txt URL is not on {SITE_HOST}: {url}")
+    template = (ROOT / "scripts" / "build_blog.py").read_text(encoding="utf-8")
+    for marker in OTHER_SITE_MARKERS:
+        if marker in template:
+            errors.append(f"blog template contains {marker}")
     for canonical in canonicals:
         if canonical not in locs:
             errors.append(f"canonical missing from sitemap: {canonical}")
