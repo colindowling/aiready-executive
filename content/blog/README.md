@@ -68,13 +68,13 @@ Topics without an explicit `hub`:
 
 Supported Markdown: paragraphs, `##` and `###` headings, `-` lists, `1.` lists, `> blockquotes`, `**bold**`, `*italic*`, and `[links](/advisory/)`. Internal links need a trailing slash. The title in the front matter is the only `h1`. Write at least two `##` sections.
 
-The generator inserts the mid-article call to action after the second `##` section, and an end call to action after the body. Both go to `cta` (default `/15minutesairoadmap/`) with:
+The generator inserts the mid-article call to action after the second `##` section, and an end call to action after the body. Each block links to `/15minutesairoadmap/` (or `cta`, if set) and to Book an Assessment at `/contact/`, with:
 
-- `utm_source=theaireadyexecutive.com`
-- `utm_medium=blog`
+- `utm_source=blog`
+- `utm_medium=internal`
 - `utm_campaign=blog_<slug>`
-- `utm_content=inbody` on the mid-article link
-- `utm_content=post_end` on the closing link
+- `utm_content=inbody` on the mid-article links
+- `utm_content=post_end` on the closing links
 
 Each post also links to its hub, to the call-to-action page when that is a different URL, and to up to two other posts with the same topic.
 

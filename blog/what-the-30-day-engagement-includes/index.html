@@ -256,8 +256,12 @@
   .post-cta { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 2rem 0; margin: 2.2rem 0; }
   .cta-title { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 0.8rem; }
   .post-cta p { color: var(--text-mid); max-width: 58ch; margin-bottom: 1.3rem; }
-  .btn-primary { display: inline-block; background: var(--gold); color: var(--black); font-weight: 500; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 1rem 1.6rem; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; }
+  .btn-primary, .btn-outline { display: inline-block; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 1rem 1.6rem; }
+  .btn-primary { background: var(--gold); color: var(--black); }
   .btn-primary:hover { opacity: 0.85; }
+  .btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold-dim); }
+  .btn-outline:hover { background: var(--gold); color: var(--black); }
   .post-faq { margin-top: 2.5rem; }
   .post-faq h2 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(1.7rem, 3vw, 2.25rem); margin-bottom: 0.4rem; }
   .faq-item { border-top: 1px solid var(--rule); padding: 1.15rem 0; }
@@ -331,7 +335,10 @@
   <p class="section-eyebrow">15 minutes</p>
   <p class="cta-title">Three quick wins and a 90-day roadmap.</p>
   <p>The free session on this site: three quick wins, a 90-day roadmap, and the five questions that put you back in charge of the room. Yours to keep.</p>
-  <a class="btn-primary" href="/15minutesairoadmap/?utm_source=theaireadyexecutive.com&amp;utm_medium=blog&amp;utm_campaign=blog_what-the-30-day-engagement-includes&amp;utm_content=inbody">Get the Roadmap</a>
+  <div class="cta-actions">
+    <a class="btn-primary" href="/15minutesairoadmap/?utm_source=blog&amp;utm_medium=internal&amp;utm_campaign=blog_what-the-30-day-engagement-includes&amp;utm_content=inbody">Get the Roadmap</a>
+    <a class="btn-outline" href="/contact/?utm_source=blog&amp;utm_medium=internal&amp;utm_campaign=blog_what-the-30-day-engagement-includes&amp;utm_content=inbody">Book an Assessment</a>
+  </div>
 </aside>
 <h2>Three published fees</h2>
 <p>Scoped to where you are and what you need. The difference is depth, access, and what we build together. The <a href="/advisory/#fees">advisory page</a> lists the same three fixed fees.</p>
@@ -346,7 +353,10 @@
   <p class="section-eyebrow">Next step</p>
   <p class="cta-title">See the 15-minute roadmap session.</p>
   <p>No pitch. No deck. Work with us, don&#x27;t work with us — the quick wins and the roadmap are yours to keep.</p>
-  <a class="btn-primary" href="/15minutesairoadmap/?utm_source=theaireadyexecutive.com&amp;utm_medium=blog&amp;utm_campaign=blog_what-the-30-day-engagement-includes&amp;utm_content=post_end">Book My 15 Minutes</a>
+  <div class="cta-actions">
+    <a class="btn-primary" href="/15minutesairoadmap/?utm_source=blog&amp;utm_medium=internal&amp;utm_campaign=blog_what-the-30-day-engagement-includes&amp;utm_content=post_end">Book My 15 Minutes</a>
+    <a class="btn-outline" href="/contact/?utm_source=blog&amp;utm_medium=internal&amp;utm_campaign=blog_what-the-30-day-engagement-includes&amp;utm_content=post_end">Book an Assessment</a>
+  </div>
 </aside>
 <section class="post-faq" aria-labelledby="faq-heading">
   <h2 id="faq-heading">Questions</h2>

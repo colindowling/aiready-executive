@@ -20,7 +20,7 @@ The roadmap page stays without the brochure nav. It is a single-action page. The
 ## Every post
 
 1. Front matter `topic` selects one hub (see `content/blog/README.md`). The generated page links to that hub. Set `hub` when the table is wrong for the piece.
-2. The mid-article and end calls to action go to `/15minutesairoadmap/` unless `cta` says otherwise. Parameters: `utm_source=theaireadyexecutive.com`, `utm_medium=blog`, `utm_campaign=blog_<slug>`, `utm_content=inbody` or `post_end`.
+2. The mid-article and end calls to action each link to `/15minutesairoadmap/` (unless `cta` says otherwise) and to Book an Assessment at `/contact/`. Parameters: `utm_source=blog`, `utm_medium=internal`, `utm_campaign=blog_<slug>`, `utm_content=inbody` or `post_end`.
 3. The related list also links the call-to-action page when it is not the hub, plus up to two other posts with the same topic.
 4. Breadcrumbs are Home / Blog / the post. The byline is Colin Dowling and links to `/about/`.
 5. Posts whose hub is `/advisory/` are listed on the advisory page. The roadmap page does not list spokes.

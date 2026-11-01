@@ -189,11 +189,18 @@ def main() -> int:
         if rel.startswith("blog/") and rel != "blog/index.html":
             if 'href="/about/"' not in text or "Colin Dowling" not in text:
                 errors.append(f"{rel}: byline does not link to /about/")
-            if "utm_content=inbody" not in text or "utm_content=post_end" not in text:
-                errors.append(f"{rel}: missing blog CTA markers")
             slug = path.parent.name
-            if f"utm_campaign=blog_{slug}" not in text:
-                errors.append(f"{rel}: utm_campaign does not match the slug")
+            for content in ("inbody", "post_end"):
+                query = (
+                    f"utm_source=blog&amp;utm_medium=internal"
+                    f"&amp;utm_campaign=blog_{slug}&amp;utm_content={content}"
+                )
+                if f'href="/15minutesairoadmap/?{query}"' not in text:
+                    errors.append(f"{rel}: missing roadmap CTA {content}")
+                if f'href="/contact/?{query}"' not in text:
+                    errors.append(f"{rel}: missing assessment CTA {content}")
+            if "Book an Assessment" not in text:
+                errors.append(f"{rel}: missing Book an Assessment")
             if 'class="takeaways"' not in text:
                 errors.append(f"{rel}: missing key takeaways")
             needed = {"BlogPosting", "FAQPage", "BreadcrumbList", "Person"}

@@ -399,20 +399,23 @@ def render_body(blocks: list[tuple], where: str, mid_cta: str) -> str:
 
 def cta_href(path: str, slug: str, content: str) -> str:
     query = (
-        f"utm_source=theaireadyexecutive.com&utm_medium=blog"
+        f"utm_source=blog&utm_medium=internal"
         f"&utm_campaign=blog_{slug}&utm_content={content}"
     )
     join = "&" if "?" in path else "?"
     return f"{path}{join}{query}"
 
 
-def cta_html(copy: dict, href: str) -> str:
+def cta_html(copy: dict, href: str, assessment_href: str) -> str:
     return (
         '<aside class="post-cta">\n'
         f'  <p class="section-eyebrow">{html.escape(copy["eyebrow"])}</p>\n'
         f'  <p class="cta-title">{html.escape(copy["title"])}</p>\n'
         f"  <p>{html.escape(copy['body'])}</p>\n"
-        f'  <a class="btn-primary" href="{html.escape(href, quote=True)}">{html.escape(copy["button"])}</a>\n'
+        '  <div class="cta-actions">\n'
+        f'    <a class="btn-primary" href="{html.escape(href, quote=True)}">{html.escape(copy["button"])}</a>\n'
+        f'    <a class="btn-outline" href="{html.escape(assessment_href, quote=True)}">Book an Assessment</a>\n'
+        "  </div>\n"
         "</aside>"
     )
 
@@ -729,8 +732,16 @@ def related_html(post: Post, posts: list[Post]) -> str:
 
 def render_post(post: Post, posts: list[Post]) -> str:
     url = f"{SITE}/blog/{post.slug}/"
-    mid = cta_html(CTA_MID, cta_href(post.cta, post.slug, "inbody"))
-    end = cta_html(CTA_END, cta_href(post.cta, post.slug, "post_end"))
+    mid = cta_html(
+        CTA_MID,
+        cta_href(post.cta, post.slug, "inbody"),
+        cta_href("/contact/", post.slug, "inbody"),
+    )
+    end = cta_html(
+        CTA_END,
+        cta_href(post.cta, post.slug, "post_end"),
+        cta_href("/contact/", post.slug, "post_end"),
+    )
     body = render_body(parse_markdown(post.body, post.source), post.source, mid)
     takeaways = "\n".join(f"    <li>{html.escape(item)}</li>" for item in post.takeaways)
     faqs = []
@@ -1087,8 +1098,12 @@ PAGE_CSS = """
   .post-cta { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 2rem 0; margin: 2.2rem 0; }
   .cta-title { font-size: clamp(1.8rem, 3vw, 2.4rem); margin-bottom: 0.8rem; }
   .post-cta p { color: var(--text-mid); max-width: 58ch; margin-bottom: 1.3rem; }
-  .btn-primary { display: inline-block; background: var(--gold); color: var(--black); font-weight: 500; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 1rem 1.6rem; }
+  .cta-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; align-items: center; }
+  .btn-primary, .btn-outline { display: inline-block; font-weight: 500; font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; padding: 1rem 1.6rem; }
+  .btn-primary { background: var(--gold); color: var(--black); }
   .btn-primary:hover { opacity: 0.85; }
+  .btn-outline { background: transparent; color: var(--gold); border: 1px solid var(--gold-dim); }
+  .btn-outline:hover { background: var(--gold); color: var(--black); }
   .post-faq { margin-top: 2.5rem; }
   .post-faq h2 { font-family: 'Cormorant Garamond', serif; font-weight: 500; font-size: clamp(1.7rem, 3vw, 2.25rem); margin-bottom: 0.4rem; }
   .faq-item { border-top: 1px solid var(--rule); padding: 1.15rem 0; }
@@ -1299,8 +1314,11 @@ Closing paragraph.
         assert "<script>alert" not in page
         assert "&lt;script&gt;alert(1)&lt;/script&gt;" in page
         assert page.find("<h2>Section two</h2>") < page.find("utm_content=inbody") < page.find("<h2>Section three</h2>")
-        assert "utm_campaign=blog_a-real-note" in page
-        assert "utm_content=post_end" in page
+        assert "utm_source=blog&amp;utm_medium=internal&amp;utm_campaign=blog_a-real-note&amp;utm_content=inbody" in page
+        assert "utm_source=blog&amp;utm_medium=internal&amp;utm_campaign=blog_a-real-note&amp;utm_content=post_end" in page
+        assert 'href="/15minutesairoadmap/?utm_source=blog' in page
+        assert 'href="/contact/?utm_source=blog' in page
+        assert "Book an Assessment" in page
         assert "Key takeaways" in page
         assert "youtube-nocookie.com/embed/abcdefghijk?autoplay=1" in page
         data = json.loads(re.search(r'<script type="application/ld\+json">\s*(.*?)\s*</script>', page, re.S).group(1))
