@@ -1124,7 +1124,7 @@ PAGE_CSS = """
   .footer-links a:hover { color: var(--gold); }
   @media (max-width: 900px) {
     .site-nav { padding: 1rem 1.25rem; flex-wrap: wrap; }
-    .page { padding: 12rem 1.25rem 3.5rem; }
+    .page { padding: 6rem 1.25rem 3.5rem; }
     footer { padding: 1.6rem 1.25rem 2rem; }
   }
   @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
