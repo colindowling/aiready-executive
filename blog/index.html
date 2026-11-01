@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- GA4. The measurement ID is the assignment in /assets/track.js. The placeholder does not load gtag.js. -->
+<script src="/assets/track.js"></script>
 <title>Notes on the engagement | AIReady Executive</title>
 <meta name="description" content="Notes from AIReady Executive on the 30-day advisory engagement, the published fees, and the free 15-minute roadmap session.">
 <meta name="robots" content="index, follow">
@@ -489,14 +491,14 @@
 
 </style>
 </head>
-<body>
+<body data-page-template="blog">
 <nav class="site-nav">
   <a href="/" class="nav-logo">AIReady <span>Executive</span></a>
   <div class="nav-links">
     <a href="/advisory/" class="nav-link">Advisory</a>
     <a href="/about/" class="nav-link">About</a>
     <a href="/blog/" class="nav-link" aria-current="page">Blog</a>
-    <a href="/contact/" class="nav-cta">Apply Now</a>
+    <a href="/contact/" class="nav-cta" data-track="apply_now" data-cta-position="nav" data-cta-id="apply_now-nav">Apply Now</a>
   </div>
 </nav>
 <main class="page">

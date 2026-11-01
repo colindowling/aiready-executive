@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- GA4. The measurement ID is the assignment in /assets/track.js. The placeholder does not load gtag.js. -->
+<script src="/assets/track.js"></script>
 <title>Advisory | AIReady Executive</title>
 <meta name="description" content="A fixed-fee, fixed-timeline advisory engagement that takes C-suite leaders and boards from AI gap to boardroom-ready in 30 days — executive alignment above the Chief AI Officer layer, delivered by a senior practitioner.">
 <meta name="robots" content="index, follow">
@@ -214,14 +216,14 @@
   }
 </style>
 </head>
-<body>
+<body data-page-template="advisory">
 <nav class="site-nav">
   <a href="/" class="nav-logo">AIReady <span>Executive</span></a>
   <div class="nav-links">
     <a href="/advisory/" class="nav-link" aria-current="page">Advisory</a>
     <a href="/about/" class="nav-link">About</a>
     <a href="/blog/" class="nav-link">Blog</a>
-    <a href="/contact/" class="nav-cta">Apply Now</a>
+    <a href="/contact/" class="nav-cta" data-track="apply_now" data-cta-position="nav" data-cta-id="apply_now-nav">Apply Now</a>
   </div>
 </nav>
 
@@ -338,7 +340,7 @@
     <h2>15 minutes to get comfortable as the executive <em>leading</em> an AI transformation</h2>
     <p class="section-body">Three quick wins, a 90-day roadmap, the five questions that put you back in charge of the room, a language pack and a resistance map. Yours to keep. Work with us, don't work with us — the quick wins and the roadmap are yours to keep.</p>
     <p class="section-body">The session page says engagements start at $20,000, and that none of that paid engagement is a condition of the free session.</p>
-    <a class="btn-primary" href="/15minutesairoadmap/">Get the Roadmap</a>
+    <a class="btn-primary" href="/15minutesairoadmap/" data-track="cta" data-cta-position="offer" data-cta-id="roadmap-offer">Get the Roadmap</a>
   </div>
 </section>
 
@@ -428,7 +430,7 @@
   <p class="section-eyebrow">Next step</p>
   <h2>Start with a <em>20-minute readiness conversation.</em></h2>
   <p class="section-body">No pitch. No deck. A direct conversation about where your organization stands, what's blocking you, and whether this engagement is the right fit.</p>
-  <div class="calendly-inline-widget" data-url="https://calendly.com/30minutechat/20-minute-ai-ready-executive?hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;background_color=111111&amp;text_color=f5f5f0&amp;primary_color=c9a84c&amp;utm_source=theaireadyexecutive.com&amp;utm_medium=website&amp;utm_campaign=advisory&amp;utm_content=advisory_page"></div>
+  <div class="calendly-inline-widget" data-cta-position="embed" data-cta-id="book_call-embed" data-url="https://calendly.com/30minutechat/20-minute-ai-ready-executive?hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;background_color=111111&amp;text_color=f5f5f0&amp;primary_color=c9a84c&amp;utm_source=theaireadyexecutive.com&amp;utm_medium=website&amp;utm_campaign=advisory&amp;utm_content=advisory_page"></div>
 </section>
 
 <footer>

@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- GA4. The measurement ID is the assignment in /assets/track.js. The placeholder does not load gtag.js. -->
+<script src="/assets/track.js"></script>
 <title>About Colin Dowling | AIReady Executive</title>
 <meta name="description" content="Colin Dowling is the senior practitioner who delivers the AIReady Executive engagement directly, and the host of Modern Business Life.">
 <meta name="robots" content="index, follow">
@@ -138,14 +140,14 @@
   }
 </style>
 </head>
-<body>
+<body data-page-template="about">
 <nav class="site-nav">
   <a href="/" class="nav-logo">AIReady <span>Executive</span></a>
   <div class="nav-links">
     <a href="/advisory/" class="nav-link">Advisory</a>
     <a href="/about/" class="nav-link" aria-current="page">About</a>
     <a href="/blog/" class="nav-link">Blog</a>
-    <a href="/contact/" class="nav-cta">Apply Now</a>
+    <a href="/contact/" class="nav-cta" data-track="apply_now" data-cta-position="nav" data-cta-id="apply_now-nav">Apply Now</a>
   </div>
 </nav>
 <main class="page">
@@ -175,7 +177,7 @@
     <p class="section-eyebrow">15 minutes</p>
     <h2>Get comfortable leading an AI transformation.</h2>
     <p>Three quick wins, a 90-day roadmap, and the five questions that put you back in charge of the room. Yours to keep.</p>
-    <a class="btn-primary" href="/15minutesairoadmap/">Get the Roadmap</a>
+    <a class="btn-primary" href="/15minutesairoadmap/" data-track="cta" data-cta-position="final" data-cta-id="roadmap-final">Get the Roadmap</a>
   </div>
 </main>
 <footer>
