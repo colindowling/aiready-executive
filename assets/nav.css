@@ -1,0 +1,321 @@
+/* Shared primary nav. Visual system matches the brochure pages:
+   Cormorant is not used here — labels stay Manrope, uppercase, widely tracked.
+   Gold is emphasis only (wordmark accent, current item, CTA, focus). */
+
+nav.aiready-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  padding: 0.55rem max(1.25rem, env(safe-area-inset-right, 0px)) 0.55rem max(1.25rem, env(safe-area-inset-left, 0px));
+  background: rgba(8, 8, 8, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  font-family: 'Manrope', sans-serif;
+}
+
+@media (min-width: 1001px) {
+  nav.aiready-nav {
+    padding: 1.5rem 4rem;
+  }
+}
+
+.aiready-nav__logo {
+  font-weight: 300;
+  font-size: 0.8rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: #F5F5F0;
+  text-decoration: none;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+.aiready-nav__logo:visited { color: #F5F5F0; }
+.aiready-nav__logo span,
+.aiready-nav__logo:visited span { color: #C9A84C; }
+
+.aiready-nav__bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.5rem;
+  margin-left: auto;
+  flex: 0 0 auto;
+}
+
+.aiready-nav__links {
+  display: none;
+  align-items: center;
+  gap: 1.6rem;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.aiready-nav__link,
+.aiready-nav__drop-trigger {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 240, 0.86);
+  text-decoration: none;
+  background: none;
+  border: 0;
+  padding: 0.45rem 0;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.aiready-nav__link:visited { color: rgba(245, 245, 240, 0.86); }
+
+.aiready-nav__link:hover,
+.aiready-nav__drop-trigger:hover,
+.aiready-nav__link[aria-current="page"],
+.aiready-nav__link[aria-current="page"]:visited,
+.aiready-nav__drop-trigger[aria-current="page"] {
+  color: #C9A84C;
+}
+
+.aiready-nav__drop {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.aiready-nav__drop-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.aiready-nav__chev {
+  width: 9px;
+  height: 6px;
+  flex: 0 0 auto;
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.aiready-nav__drop.is-open .aiready-nav__chev { transform: rotate(180deg); }
+
+.aiready-nav__menu {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  min-width: 220px;
+  z-index: 120;
+  background: #111111;
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  padding: 0.35rem 0;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+
+/* Hover bridge so the pointer can cross the gap under the trigger. */
+.aiready-nav__menu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -14px;
+  height: 14px;
+}
+
+.aiready-nav__drop.is-open .aiready-nav__menu {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.aiready-nav__menu a {
+  display: block;
+  padding: 0.7rem 1.1rem;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(245, 245, 240, 0.86);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.aiready-nav__menu a:visited { color: rgba(245, 245, 240, 0.86); }
+
+.aiready-nav__menu a:hover,
+.aiready-nav__menu a:focus-visible,
+.aiready-nav__menu a[aria-current="page"],
+.aiready-nav__menu a[aria-current="page"]:visited {
+  color: #C9A84C;
+  background: rgba(201, 168, 76, 0.08);
+}
+
+/* Separate button, same treatment as the old .nav-cta. Not one of the five. */
+.aiready-nav__cta {
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #C9A84C;
+  text-decoration: none;
+  border: 1px solid #8A6F33;
+  padding: 0.5rem 1.4rem;
+  white-space: nowrap;
+  transition: background 0.2s, color 0.2s;
+}
+
+.aiready-nav__cta:visited { color: #C9A84C; }
+.aiready-nav__cta:hover { background: #C9A84C; color: #080808; }
+
+.aiready-nav__toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  flex: 0 0 auto;
+  background: transparent;
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  color: #F5F5F0;
+  cursor: pointer;
+}
+
+.aiready-nav__toggle span {
+  display: block;
+  width: 16px;
+  height: 1px;
+  background: #F5F5F0;
+  transition: transform 0.2s ease, opacity 0.15s ease;
+}
+
+.aiready-nav__toggle[aria-expanded="true"] {
+  border-color: #C9A84C;
+}
+
+.aiready-nav__toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.aiready-nav__toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+
+.aiready-nav__toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.aiready-nav__panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: calc(100dvh - 4.5rem);
+  overflow-y: auto;
+  background: #111111;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  padding: 0.35rem max(1.25rem, env(safe-area-inset-right, 0px)) 1.25rem max(1.25rem, env(safe-area-inset-left, 0px));
+  -webkit-overflow-scrolling: touch;
+}
+
+.aiready-nav__panel[hidden] { display: none; }
+
+.aiready-nav__panel a.aiready-nav__plink {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.18);
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #F5F5F0;
+  text-decoration: none;
+}
+
+.aiready-nav__panel a.aiready-nav__plink:visited { color: #F5F5F0; }
+
+.aiready-nav__panel a.aiready-nav__plink:hover,
+.aiready-nav__panel a.aiready-nav__plink[aria-current="page"],
+.aiready-nav__panel a.aiready-nav__plink[aria-current="page"]:visited {
+  color: #C9A84C;
+}
+
+.aiready-nav__label {
+  margin: 0.85rem 0 0;
+  font-family: 'Manrope', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #C9A84C;
+}
+
+.aiready-nav__sub a.aiready-nav__plink {
+  padding-left: 0.85rem;
+}
+
+.aiready-nav__panel .aiready-nav__cta {
+  display: block;
+  margin-top: 1rem;
+  text-align: center;
+  padding: 0.9rem 1.4rem;
+}
+
+.aiready-nav__logo:focus-visible,
+.aiready-nav__link:focus-visible,
+.aiready-nav__drop-trigger:focus-visible,
+.aiready-nav__cta:focus-visible,
+.aiready-nav__toggle:focus-visible,
+.aiready-nav__panel a:focus-visible,
+.aiready-nav__menu a:focus-visible {
+  outline: 2px solid #C9A84C;
+  outline-offset: 3px;
+}
+
+/* Desktop: text links in the bar, no hamburger.
+   1000px matches the point where a full five-item row plus the wordmark wraps. */
+@media (min-width: 1001px) {
+  .aiready-nav__links { display: flex; }
+  .aiready-nav__toggle { display: none; }
+}
+
+/* An empty link row (today: logo + Apply Now only) must not leave a gap. */
+.aiready-nav__links:empty { display: none; }
+
+/* Safety net: if the desktop row still overflows, drop to the hamburger. */
+nav.aiready-nav.aiready-nav--collapsed .aiready-nav__links { display: none; }
+nav.aiready-nav.aiready-nav--collapsed .aiready-nav__toggle { display: inline-flex; }
+
+nav.aiready-nav.aiready-nav--hide-cta .aiready-nav__bar > .aiready-nav__cta { display: none; }
+
+nav.aiready-nav.aiready-nav--compact .aiready-nav__logo {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aiready-nav__menu,
+  .aiready-nav__chev,
+  .aiready-nav__toggle span,
+  .aiready-nav__cta {
+    transition: none;
+  }
+}
