@@ -366,7 +366,8 @@
   });
 
   document.addEventListener("keydown", function (event) {
-    if (event.key === "Escape" && panel && !panel.hidden) {
+    if ((event.key === "Escape" || event.key === "Esc") && panel && !panel.hidden) {
+      event.preventDefault();
       closePanel(true);
       return;
     }
@@ -382,7 +383,7 @@
       event.preventDefault();
       first.focus();
     }
-  });
+  }, true);
 
   /* Measure the bar itself. A wide table elsewhere on the page must not
      collapse the nav, and a wrapping bar must collapse even if the document
