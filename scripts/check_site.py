@@ -190,15 +190,15 @@ def main() -> int:
             if 'href="/about/"' not in text or "Colin Dowling" not in text:
                 errors.append(f"{rel}: byline does not link to /about/")
             slug = path.parent.name
+            if "utm_source=blog" in text:
+                errors.append(f"{rel}: internal blog CTA still carries utm_source=blog")
             for content in ("inbody", "post_end"):
-                query = (
-                    f"utm_source=blog&amp;utm_medium=internal"
-                    f"&amp;utm_campaign=blog_{slug}&amp;utm_content={content}"
-                )
-                if f'href="/15minutesairoadmap/?{query}"' not in text:
+                if f'data-cta-id="roadmap-{content}"' not in text or f'data-source-post="{slug}"' not in text:
                     errors.append(f"{rel}: missing roadmap CTA {content}")
-                if f'href="/contact/?{query}"' not in text:
+                if f'data-cta-id="apply_now-{content}"' not in text:
                     errors.append(f"{rel}: missing assessment CTA {content}")
+                if 'data-offer="roadmap_15min"' not in text or 'data-offer="advisory_30day"' not in text:
+                    errors.append(f"{rel}: CTA missing offer")
             if "Book an Assessment" not in text:
                 errors.append(f"{rel}: missing Book an Assessment")
             if 'class="takeaways"' not in text:

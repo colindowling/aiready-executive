@@ -54,7 +54,7 @@
 
   function trackAttrString(el, inMenu) {
     if (!el || !el.getAttribute) return "";
-    var names = ["data-track", "data-cta", "data-cta-position", "data-cta-id", "data-cluster", "data-persona"];
+    var names = ["data-track", "data-cta", "data-cta-position", "data-cta-id", "data-offer", "data-source-post", "data-cluster", "data-persona"];
     var parts = [];
     names.forEach(function (name) {
       var value = el.getAttribute(name);

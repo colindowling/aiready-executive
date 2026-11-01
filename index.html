@@ -983,7 +983,7 @@
   }
 </style>
 </head>
-<body data-page-template="home">
+<body data-page-template="home" data-offer="advisory_30day">
 
 <!-- NAV -->
 <nav class="site-nav">
@@ -992,7 +992,7 @@
     <a href="/advisory/" class="nav-link">Advisory</a>
     <a href="/about/" class="nav-link">About</a>
     <a href="/blog/" class="nav-link">Blog</a>
-    <a href="/contact/" class="nav-cta" data-track="apply_now" data-cta-position="nav" data-cta-id="apply_now-nav">Apply Now</a>
+    <a href="/contact/" class="nav-cta" data-track="apply_now" data-cta-position="nav" data-cta-id="apply_now-nav" data-offer="advisory_30day">Apply Now</a>
   </div>
 </nav>
 
@@ -1003,7 +1003,7 @@
     <h1 class="hero-headline fade-up">Your board expects you to <em>have this handled.</em></h1>
     <p class="hero-sub fade-up">Half of CEOs believe their position depends on getting AI right in 2026. Most don't know where to start. We work directly with C-suite leaders to close that gap — before the board asks why you haven't.</p>
     <div class="hero-actions fade-up">
-      <a href="/contact/" class="btn-primary" data-track="apply_now" data-cta-position="hero" data-cta-id="apply_now-hero">Book an Assessment</a>
+      <a href="/contact/" class="btn-primary" data-track="apply_now" data-cta-position="hero" data-cta-id="apply_now-hero" data-offer="advisory_30day">Book an Assessment</a>
       <a href="#what" class="btn-ghost">See the framework</a>
     </div>
   </div>
@@ -1332,8 +1332,8 @@
   <h2 class="section-headline fade-up">Start with a <em>20-minute readiness conversation.</em></h2>
   <p class="section-body fade-up">No pitch. No deck. A direct conversation about where your organization stands, what's blocking you, and whether this engagement is the right fit.</p>
   <div class="cta-actions fade-up">
-    <a href="/contact/" class="btn-primary" data-track="apply_now" data-cta-position="final" data-cta-id="apply_now-final">Request Your Assessment</a>
-    <a href="/contact/#book" class="btn-outline" id="bookNow" data-track="book_call" data-cta-position="final" data-cta-id="book_call-final">Book a time now</a>
+    <a href="/contact/" class="btn-primary" data-track="apply_now" data-cta-position="final" data-cta-id="apply_now-final" data-offer="advisory_30day">Request Your Assessment</a>
+    <a href="https://calendly.com/30minutechat/20-minute-ai-ready-executive?hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;background_color=111111&amp;text_color=f5f5f0&amp;primary_color=c9a84c&amp;utm_source=theaireadyexecutive.com&amp;utm_medium=website&amp;utm_campaign=aiready_contact_page&amp;utm_content=AIREADY_EXECUTIVE" class="btn-outline" id="bookNow" data-track="book_call" data-cta-position="final" data-cta-id="book_call-final" data-offer="advisory_30day">Book a time now</a>
   </div>
   <p class="cta-sub fade-up">Engagements are limited. We work with one executive team at a time.</p>
 </section>
@@ -1378,39 +1378,7 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // Book-a-time: open Calendly in a modal so nobody has to detour via /contact.
-  // Progressive enhancement — the anchor points at /contact/#book, so if the
-  // Calendly script is blocked, still loading, or JS is off entirely, the link
-  // just navigates to the embedded calendar instead.
-  const bookNow = document.getElementById('bookNow');
-  if (bookNow) {
-    bookNow.addEventListener('click', (e) => {
-      if (window.Calendly && typeof window.Calendly.initPopupWidget === 'function') {
-        e.preventDefault();
-        window.Calendly.initPopupWidget({
-          url: 'https://calendly.com/30minutechat/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=111111&text_color=f5f5f0&primary_color=c9a84c&utm_source=aireadyexecutive&utm_medium=website&utm_campaign=home_cta'
-        });
-        if (typeof gtag === 'function') {
-          gtag('event', 'calendly_open', { location: 'home-cta' });
-        }
-      }
-    });
-  }
 </script>
-
-  <script>
-    // Calendly conversion tracking. calendly.event_scheduled is the booking itself.
-    window.addEventListener('message', function(e) {
-      if (!e || !e.data || typeof e.data.event !== 'string') return;
-      var ev = e.data.event;
-      if (ev.lastIndexOf('calendly.', 0) !== 0) return;
-      if (typeof gtag !== 'function') return;
-      if (ev === 'calendly.event_scheduled') {
-        gtag('event', 'meeting_booked', { location: 'home-cta', venture: 'aireadyexecutive' });
-      }
-    });
-  </script>
 <script src="/assets/nav.js"></script>
 </body>
 </html>
