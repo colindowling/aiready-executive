@@ -52,6 +52,20 @@
   var ctaHref = nav.getAttribute("data-cta") || (ctaEl && ctaEl.getAttribute("href")) || (preset.cta && preset.cta.href) || "/contact/";
   var ctaLabel = (ctaEl && ctaEl.textContent.trim()) || (preset.cta && preset.cta.label) || "Apply Now";
 
+  function trackAttrString(el, inMenu) {
+    if (!el || !el.getAttribute) return "";
+    var names = ["data-track", "data-cta", "data-cta-position", "data-cta-id", "data-cluster", "data-persona"];
+    var parts = [];
+    names.forEach(function (name) {
+      var value = el.getAttribute(name);
+      if (!value) return;
+      if (inMenu && name === "data-cta-position") value = "nav_menu";
+      if (inMenu && name === "data-cta-id") value = value.replace(/-nav$/, "-nav-menu");
+      parts.push(name + '="' + esc(value) + '"');
+    });
+    return parts.length ? " " + parts.join(" ") : "";
+  }
+
   function esc(value) {
     return String(value == null ? "" : value).replace(/[&<>"']/g, function (ch) {
       return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[ch];
@@ -185,6 +199,9 @@
     return bits;
   }).join("");
 
+  var ctaTrack = trackAttrString(ctaEl, false);
+  var ctaTrackMenu = trackAttrString(ctaEl, true);
+
   nav.classList.add("aiready-nav");
   nav.setAttribute("aria-label", "Primary");
   nav.setAttribute("data-nav-ready", "true");
@@ -192,14 +209,14 @@
     '<a class="aiready-nav__logo" href="' + esc(logoHref) + '">' + logoHTML + "</a>" +
     '<div class="aiready-nav__bar">' +
       '<div class="aiready-nav__links">' + desktop + "</div>" +
-      '<a class="aiready-nav__cta" href="' + esc(ctaHref) + '">' + esc(ctaLabel) + "</a>" +
+      '<a class="aiready-nav__cta" href="' + esc(ctaHref) + '"' + ctaTrack + ">" + esc(ctaLabel) + "</a>" +
       '<button type="button" class="aiready-nav__toggle" aria-expanded="false" aria-controls="aiready-nav-panel" aria-label="Open menu">' +
         "<span></span><span></span><span></span>" +
       "</button>" +
     "</div>" +
     '<div id="aiready-nav-panel" class="aiready-nav__panel" hidden role="region" aria-label="Menu">' +
       mobile +
-      '<a class="aiready-nav__cta" href="' + esc(ctaHref) + '">' + esc(ctaLabel) + "</a>" +
+      '<a class="aiready-nav__cta" href="' + esc(ctaHref) + '"' + ctaTrackMenu + ">" + esc(ctaLabel) + "</a>" +
     "</div>";
 
   var toggle = nav.querySelector(".aiready-nav__toggle");
