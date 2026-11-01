@@ -471,9 +471,8 @@ def nav_html(current: str) -> str:
         '  <a href="/" class="nav-logo">AIReady <span>Executive</span></a>\n'
         '  <div class="nav-links">\n'
         f"    {link('/advisory/', 'Advisory', 'advisory')}\n"
-        f"    {link('/blog/', 'Blog', 'blog')}\n"
-        f"    {link('/15minutesairoadmap/', '15-Min Roadmap', 'roadmap')}\n"
         f"    {link('/about/', 'About', 'about')}\n"
+        f"    {link('/blog/', 'Blog', 'blog')}\n"
         '    <a href="/contact/" class="nav-cta">Apply Now</a>\n'
         "  </div>\n"
         "</nav>"
@@ -1161,6 +1160,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/nav.css">
 @@JSONLD@@
 <style>
 @@CSS@@
@@ -1193,6 +1193,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
 </article>
 @@FOOTER@@
 @@VIDEO_SCRIPT@@
+<script src="/assets/nav.js"></script>
 </body>
 </html>
 """.replace("@@CSS@@", PAGE_CSS)
@@ -1226,6 +1227,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/nav.css">
 @@JSONLD@@
 <style>
 @@CSS@@
@@ -1241,6 +1243,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
 @@LISTING@@
 </main>
 @@FOOTER@@
+<script src="/assets/nav.js"></script>
 </body>
 </html>
 """.replace("@@CSS@@", PAGE_CSS)
