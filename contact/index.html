@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- GA4. The measurement ID is the assignment in /assets/track.js. The placeholder does not load gtag.js. -->
+<script src="/assets/track.js"></script>
 <title>Contact | AIReady Executive</title>
 <meta name="description" content="Start with a 20-minute readiness conversation. No pitch, no deck — a direct conversation about where your organization stands and whether this engagement is the right fit.">
 <meta name="robots" content="index, follow">
@@ -471,7 +473,7 @@
   }
 </style>
 </head>
-<body>
+<body data-page-template="contact" data-offer="advisory_30day">
 
 <!-- NAV -->
 <nav class="site-nav">
@@ -480,7 +482,7 @@
     <a href="/advisory/" class="nav-link">Advisory</a>
     <a href="/about/" class="nav-link">About</a>
     <a href="/blog/" class="nav-link">Blog</a>
-    <a href="#form" class="nav-cta">Apply Now</a>
+    <a href="#form" class="nav-cta" data-track="apply_now" data-cta-position="nav" data-cta-id="apply_now-nav" data-offer="advisory_30day">Apply Now</a>
   </div>
 </nav>
 
@@ -506,7 +508,7 @@
 
       <div class="form-shell fade-up" id="form">
 
-      <form id="contactForm" novalidate>
+      <form id="contactForm" novalidate data-cta-position="form" data-cta-id="contact_form">
 
         <div class="cf-grid" style="margin-bottom:1.6rem;">
           <div class="cf-row">
@@ -603,6 +605,7 @@
 
       <div class="calendly-wrapper fade-up">
         <div class="calendly-inline-widget"
+             data-cta-position="embed" data-cta-id="book_call-embed" data-offer="advisory_30day"
              data-url="https://calendly.com/30minutechat/20-minute-ai-ready-executive?hide_event_type_details=1&hide_gdpr_banner=1&background_color=111111&text_color=f5f5f0&primary_color=c9a84c&utm_source=theaireadyexecutive.com&utm_medium=website&utm_campaign=aiready_contact_page&utm_content=AIREADY_EXECUTIVE"></div>
       </div>
     </div>
@@ -694,6 +697,18 @@
         page_url:     window.location.href
       };
 
+      var attr = (window.aireadyAttribution && window.aireadyAttribution()) || {};
+      var last = (window.aireadyLastCta && window.aireadyLastCta()) || {};
+      payload.offer = cForm.tier.value;
+      payload.landing_page = attr.landing_page || '';
+      payload.first_referrer = attr.referrer || '';
+      payload.utm_source = attr.utm_source || '';
+      payload.utm_medium = attr.utm_medium || '';
+      payload.utm_campaign = attr.utm_campaign || '';
+      payload.utm_term = attr.utm_term || '';
+      payload.utm_content = attr.utm_content || '';
+      payload.entry_page = last.page || '';
+
       if (!payload.name || !payload.email || !payload.company || !payload.role || !payload.message) {
         cfShowError('Please complete the required fields.');
         return;
@@ -717,8 +732,24 @@
           cForm.style.display = 'none';
           cSuccess.classList.add('active');
           cSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          if (typeof gtag === 'function') {
-            gtag('event', 'contact_form_submit', { form_location: 'aiready-contact-page' });
+          if (window.aireadyTrack) {
+            window.aireadyTrack('contact_form_submit', cForm, {
+              form_id: 'contact',
+              form_location: 'aiready-contact-page',
+              offer: cForm.tier.value,
+              tier: cForm.tier.value,
+              role: cForm.role.value,
+              company_size: cForm.company_size.value
+            });
+          } else if (typeof gtag === 'function') {
+            gtag('event', 'contact_form_submit', {
+              form_id: 'contact',
+              form_location: 'aiready-contact-page',
+              offer: cForm.tier.value,
+              tier: cForm.tier.value,
+              role: cForm.role.value,
+              company_size: cForm.company_size.value
+            });
           }
         } else {
           const data = await res.json().catch(() => ({}));
@@ -734,23 +765,6 @@
     });
   }
 </script>
-
-
-  <script>
-    // Calendly conversion tracking. calendly.event_scheduled is the booking itself.
-    window.addEventListener('message', function(e) {
-      if (!e || !e.data || typeof e.data.event !== 'string') return;
-      var ev = e.data.event;
-      if (ev.lastIndexOf('calendly.', 0) !== 0) return;
-      if (typeof gtag !== 'function') return;
-      if (ev === 'calendly.date_and_time_selected') {
-        gtag('event', 'calendly_time_selected', { location: 'aiready-contact-page', venture: 'aireadyexecutive' });
-      }
-      if (ev === 'calendly.event_scheduled') {
-        gtag('event', 'meeting_booked', { location: 'aiready-contact-page', venture: 'aireadyexecutive' });
-      }
-    });
-  </script>
 <script src="/assets/nav.js"></script>
 </body>
 </html>

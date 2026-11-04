@@ -397,24 +397,17 @@ def render_body(blocks: list[tuple], where: str, mid_cta: str) -> str:
     return "\n".join(pieces)
 
 
-def cta_href(path: str, slug: str, content: str) -> str:
-    query = (
-        f"utm_source=blog&utm_medium=internal"
-        f"&utm_campaign=blog_{slug}&utm_content={content}"
-    )
-    join = "&" if "?" in path else "?"
-    return f"{path}{join}{query}"
-
-
-def cta_html(copy: dict, href: str, assessment_href: str) -> str:
+def cta_html(copy: dict, href: str, assessment_href: str, position: str, slug: str) -> str:
+    post = html.escape(slug, quote=True)
+    place = html.escape(position, quote=True)
     return (
         '<aside class="post-cta">\n'
         f'  <p class="section-eyebrow">{html.escape(copy["eyebrow"])}</p>\n'
         f'  <p class="cta-title">{html.escape(copy["title"])}</p>\n'
         f"  <p>{html.escape(copy['body'])}</p>\n"
         '  <div class="cta-actions">\n'
-        f'    <a class="btn-primary" href="{html.escape(href, quote=True)}">{html.escape(copy["button"])}</a>\n'
-        f'    <a class="btn-outline" href="{html.escape(assessment_href, quote=True)}">Book an Assessment</a>\n'
+        f'    <a class="btn-primary" href="{html.escape(href, quote=True)}" data-track="cta" data-cta-position="{place}" data-cta-id="roadmap-{place}" data-offer="roadmap_15min" data-source-post="{post}">{html.escape(copy["button"])}</a>\n'
+        f'    <a class="btn-outline" href="{html.escape(assessment_href, quote=True)}" data-track="apply_now" data-cta-position="{place}" data-cta-id="apply_now-{place}" data-offer="advisory_30day" data-source-post="{post}">Book an Assessment</a>\n'
         "  </div>\n"
         "</aside>"
     )
@@ -473,7 +466,7 @@ def nav_html(current: str) -> str:
         f"    {link('/advisory/', 'Advisory', 'advisory')}\n"
         f"    {link('/about/', 'About', 'about')}\n"
         f"    {link('/blog/', 'Blog', 'blog')}\n"
-        '    <a href="/contact/" class="nav-cta">Apply Now</a>\n'
+        '    <a href="/contact/" class="nav-cta" data-track="apply_now" data-cta-position="nav" data-cta-id="apply_now-nav" data-offer="advisory_30day">Apply Now</a>\n'
         "  </div>\n"
         "</nav>"
     )
@@ -731,16 +724,8 @@ def related_html(post: Post, posts: list[Post]) -> str:
 
 def render_post(post: Post, posts: list[Post]) -> str:
     url = f"{SITE}/blog/{post.slug}/"
-    mid = cta_html(
-        CTA_MID,
-        cta_href(post.cta, post.slug, "inbody"),
-        cta_href("/contact/", post.slug, "inbody"),
-    )
-    end = cta_html(
-        CTA_END,
-        cta_href(post.cta, post.slug, "post_end"),
-        cta_href("/contact/", post.slug, "post_end"),
-    )
+    mid = cta_html(CTA_MID, post.cta, "/contact/", "inbody", post.slug)
+    end = cta_html(CTA_END, post.cta, "/contact/", "post_end", post.slug)
     body = render_body(parse_markdown(post.body, post.source), post.source, mid)
     takeaways = "\n".join(f"    <li>{html.escape(item)}</li>" for item in post.takeaways)
     faqs = []
@@ -1135,6 +1120,8 @@ POST_TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- GA4. The measurement ID is the assignment in /assets/track.js. The placeholder does not load gtag.js. -->
+<script src="/assets/track.js"></script>
 <title>@@TITLE@@ | AIReady Executive</title>
 <meta name="description" content="@@DESCRIPTION@@">
 <meta name="robots" content="index, follow">
@@ -1166,7 +1153,7 @@ POST_TEMPLATE = """<!DOCTYPE html>
 @@CSS@@
 </style>
 </head>
-<body>
+<body data-page-template="blog-post">
 @@NAV@@
 <article class="page">
 @@CRUMBS@@
@@ -1203,6 +1190,8 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- GA4. The measurement ID is the assignment in /assets/track.js. The placeholder does not load gtag.js. -->
+<script src="/assets/track.js"></script>
 <title>@@TITLE@@ | AIReady Executive</title>
 <meta name="description" content="@@DESCRIPTION@@">
 <meta name="robots" content="index, follow">
@@ -1233,7 +1222,7 @@ INDEX_TEMPLATE = """<!DOCTYPE html>
 @@CSS@@
 </style>
 </head>
-<body>
+<body data-page-template="blog">
 @@NAV@@
 <main class="page">
 @@CRUMBS@@
@@ -1316,11 +1305,16 @@ Closing paragraph.
         assert "Hidden" not in (root / "blog" / "index.html").read_text(encoding="utf-8")
         assert "<script>alert" not in page
         assert "&lt;script&gt;alert(1)&lt;/script&gt;" in page
-        assert page.find("<h2>Section two</h2>") < page.find("utm_content=inbody") < page.find("<h2>Section three</h2>")
-        assert "utm_source=blog&amp;utm_medium=internal&amp;utm_campaign=blog_a-real-note&amp;utm_content=inbody" in page
-        assert "utm_source=blog&amp;utm_medium=internal&amp;utm_campaign=blog_a-real-note&amp;utm_content=post_end" in page
-        assert 'href="/15minutesairoadmap/?utm_source=blog' in page
-        assert 'href="/contact/?utm_source=blog' in page
+        assert page.find("<h2>Section two</h2>") < page.find('data-cta-position="inbody"') < page.find("<h2>Section three</h2>")
+        assert "utm_source=blog" not in page
+        assert 'href="/15minutesairoadmap/"' in page
+        assert 'href="/contact/"' in page
+        assert 'data-offer="roadmap_15min"' in page
+        assert 'data-offer="advisory_30day"' in page
+        assert 'data-source-post="a-real-note"' in page
+        assert 'src="/assets/track.js"' in page
+        assert 'data-page-template="blog-post"' in page
+        assert 'data-cta-id="apply_now-inbody"' in page
         assert "Book an Assessment" in page
         assert "Key takeaways" in page
         assert "youtube-nocookie.com/embed/abcdefghijk?autoplay=1" in page
