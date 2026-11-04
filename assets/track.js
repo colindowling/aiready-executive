@@ -5,10 +5,10 @@
    Payloads include page_location, page_template, cta_position and cta_id,
    plus first-touch attribution. Add ?aire_test=1 to mark hits for DebugView.
 
-   The measurement ID is the assignment on the next line. Replace
-   G-XXXXXXXXXX with the real GA4 ID. While it is still all X's, this
-   file does not define gtag and does not request gtag.js. */
-var GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+   The measurement ID is the assignment on the next line.
+   An all-X ID does not define gtag and does not request gtag.js.
+   */
+var GA_MEASUREMENT_ID = "G-GDHNVJGQMJ";
 
 (function () {
   var id = typeof GA_MEASUREMENT_ID === "string" ? GA_MEASUREMENT_ID : "";
