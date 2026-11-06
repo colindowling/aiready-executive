@@ -32,6 +32,14 @@ Accountable leaders: CEO/President, Board Members, COO, CFO/Strategy Lead. This 
 - Who the engagement is for: https://theaireadyexecutive.com/blog/who-the-engagement-is-for/
 - What the 15-minute session includes: https://theaireadyexecutive.com/blog/what-the-15-minute-session-includes/
 
+## Draft pages (not in the menu, not confirmed offers)
+Pricing on these URLs is explicitly TBD where it conflicts with the tiers above. Do not treat them as published fees.
+- https://theaireadyexecutive.com/ai-roi/ — content draft for demonstrable ROI and a failed pilot. No calculator yet.
+- https://theaireadyexecutive.com/fractional-chief-ai-officer/ — comparison draft.
+- https://theaireadyexecutive.com/ai-consulting-cost/ — cost draft. Published tiers remain $20,000 / $45,000 / $75,000. A $25,000 primer is not confirmed.
+- https://theaireadyexecutive.com/ai-exposure-review/ — proposed review. A $3,500 figure is not a live offer.
+- https://theaireadyexecutive.com/advisory/30-days/ — draft of what a 30-day primer would cover.
+
 ## Contact
 - Contact form: https://theaireadyexecutive.com/contact/
 - Site: https://theaireadyexecutive.com/

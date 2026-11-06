@@ -55,8 +55,15 @@ def visible(fragment: str) -> str:
 def html_files() -> list[Path]:
     files = [ROOT / "index.html"]
     files.extend(sorted(ROOT.glob("*/index.html")))
-    files.extend(sorted(ROOT.glob("blog/*/index.html")))
-    return [path for path in files if path.is_file() and "content" not in path.parts]
+    files.extend(sorted(ROOT.glob("*/*/index.html")))
+    unique: list[Path] = []
+    seen: set[Path] = set()
+    for path in files:
+        if not path.is_file() or "content" in path.parts or path in seen:
+            continue
+        seen.add(path)
+        unique.append(path)
+    return unique
 
 
 def resolve(url: str, source: Path) -> tuple[Path | None, str | None]:
@@ -104,6 +111,7 @@ def main() -> int:
     errors: list[str] = []
     pages = html_files()
     canonicals: set[str] = set()
+    draft_canonicals: set[str] = set()
     for path in pages:
         text = path.read_text(encoding="utf-8")
         rel = str(path.relative_to(ROOT))
@@ -171,8 +179,13 @@ def main() -> int:
                 if price in {"6000", "2500", "2000", "1800", "1500", "1200", "9000"}:
                     errors.append(f"{rel}: comparison or offsite figure used as an Offer price")
         canonical = re.search(r'<link rel="canonical" href="([^"]+)"', text)
+        robots = re.search(r'<meta name="robots" content="([^"]+)"', text)
+        noindex = bool(robots and "noindex" in robots.group(1))
         if canonical:
-            canonicals.add(canonical.group(1))
+            if noindex:
+                draft_canonicals.add(canonical.group(1))
+            else:
+                canonicals.add(canonical.group(1))
             if not canonical.group(1).startswith(SITE_HOST):
                 errors.append(f"{rel}: canonical is not on {SITE_HOST}")
         og_url = re.search(r'<meta property="og:url" content="([^"]+)"', text)
@@ -262,6 +275,9 @@ def main() -> int:
     for canonical in canonicals:
         if canonical not in locs:
             errors.append(f"canonical missing from sitemap: {canonical}")
+    for canonical in draft_canonicals:
+        if canonical in locs:
+            errors.append(f"noindex draft is in the sitemap: {canonical}")
 
     if errors:
         print("\n".join(errors), file=sys.stderr)
