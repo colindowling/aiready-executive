@@ -31,6 +31,7 @@ topic: engagement            # engagement, readiness, roadmap, board, or fees
 topic_label: Engagement      # optional display label
 hub: /advisory/               # optional; otherwise chosen from the topic
 cta: /15minutesairoadmap/    # optional; this is the default
+hide_cta: false              # optional; true skips the mid-article and end CTA blocks
 published: true
 takeaways:
   - "One sentence already supported by the site."
@@ -77,6 +78,8 @@ The generator inserts the mid-article call to action after the second `##` secti
 - `utm_content=post_end` on the closing links
 
 Each post also links to its hub, to the call-to-action page when that is a different URL, and to up to two other posts with the same topic.
+
+Set `hide_cta: true` to skip the mid-article and end blocks. Use it when a product call to action does not belong on the piece. The page still links to its hub and to other posts. Point `hub` at another post, or at `/blog/`, when the offer page would be a hard sell. The site nav and footer keep their usual links. Do not invent fees or offers in the body to replace the blocks.
 
 ## Video
 
