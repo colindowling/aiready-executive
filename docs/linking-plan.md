@@ -20,8 +20,8 @@ The roadmap page stays without the brochure nav. It is a single-action page. The
 ## Every post
 
 1. Front matter `topic` selects one hub (see `content/blog/README.md`). The generated page links to that hub. Set `hub` when the table is wrong for the piece.
-2. The mid-article and end calls to action each link to `/15minutesairoadmap/` (unless `cta` says otherwise) and to Book an Assessment at `/contact/`. Parameters: `utm_source=blog`, `utm_medium=internal`, `utm_campaign=blog_<slug>`, `utm_content=inbody` or `post_end`.
-3. The related list also links the call-to-action page when it is not the hub, plus up to two other posts with the same topic.
+2. The mid-article and end calls to action each link to `/15minutesairoadmap/` (unless `cta` says otherwise) and to Book an Assessment at `/contact/`. Parameters: `utm_source=blog`, `utm_medium=internal`, `utm_campaign=blog_<slug>`, `utm_content=inbody` or `post_end`. Posts with `hide_cta: true` skip both blocks. Do not invent fees or offers to replace them.
+3. The related list also links the call-to-action page when it is not the hub, plus up to two other posts with the same topic. A `hide_cta` post does not link the call-to-action page from that list. Point `hub` at another post or `/blog/` when the offer page would be a hard sell.
 4. Breadcrumbs are Home / Blog / the post. The byline is Colin Dowling and links to `/about/`.
 5. Posts whose hub is `/advisory/` are listed on the advisory page. The roadmap page does not list spokes.
 6. Do not link a Modern Business Life episode until that episode exists for the post. The show itself is linked from `/about/`. One cross-site link is the ceiling, and only when the topic is actually on the other site.

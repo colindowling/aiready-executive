@@ -78,10 +78,10 @@ CTA_END = {
 STATIC_PAGES = [
     # (path, lastmod, changefreq, priority)
     ("/", "2026-10-31", "monthly", "1.0"),
-    ("/advisory/", "2026-10-31", "monthly", "0.9"),
+    ("/advisory/", "2026-11-06", "monthly", "0.9"),
     ("/about/", "2026-10-31", "monthly", "0.7"),
     ("/15minutesairoadmap/", "2026-10-31", "monthly", "0.8"),
-    ("/blog/", "2026-10-31", "weekly", "0.8"),
+    ("/blog/", "2026-11-06", "weekly", "0.8"),
     ("/contact/", "2026-10-31", "yearly", "0.8"),
 ]
 
@@ -390,10 +390,11 @@ def render_body(blocks: list[tuple], where: str, mid_cta: str) -> str:
             bits.append((kind, f"<ol>{items}</ol>"))
     h2_at = [index for index, (kind, _) in enumerate(bits) if kind == "h2"]
     if len(h2_at) < 2:
-        die(f"{where}: write at least two ## sections so the mid-article CTA can follow section 2")
-    insert_at = h2_at[2] if len(h2_at) >= 3 else len(bits)
+        die(f"{where}: write at least two ## sections")
     pieces = [fragment for _, fragment in bits]
-    pieces.insert(insert_at, mid_cta)
+    if mid_cta:
+        insert_at = h2_at[2] if len(h2_at) >= 3 else len(bits)
+        pieces.insert(insert_at, mid_cta)
     return "\n".join(pieces)
 
 
@@ -493,10 +494,15 @@ def footer_html() -> str:
 </footer>"""
 
 
-def hub_label(hub: str) -> str:
+def hub_label(hub: str, posts: list[Post] | None = None) -> str:
     path = hub.split("#", 1)[0]
     if not path.endswith("/"):
         path += "/"
+    if posts and path.startswith("/blog/") and path != "/blog/":
+        slug = path.strip("/").split("/")[-1]
+        for other in posts:
+            if other.slug == slug:
+                return other.title
     return {
         "/advisory/": "Advisory",
         "/about/": "About",
@@ -524,6 +530,7 @@ class Post:
     topic_label: str
     hub: str
     cta: str
+    hide_cta: bool
     faqs: list[tuple[str, str]]
     takeaways: list[str]
     video: dict | None
@@ -611,6 +618,7 @@ def load_posts(root: Path) -> list[Post]:
             known = ", ".join(sorted(TOPIC_HUBS))
             die(f"{where}: unknown topic {topic!r}. Set hub: or use one of: {known}")
         cta = local_path(data["cta"], f"{where}: cta") if "cta" in data else DEFAULT_CTA
+        hide_cta = as_bool(data.get("hide_cta"), False)
         faqs_raw = data.get("faqs")
         if not isinstance(faqs_raw, list) or not 3 <= len(faqs_raw) <= 5:
             die(f"{where}: faqs must be a list of 3 to 5 questions")
@@ -644,6 +652,7 @@ def load_posts(root: Path) -> list[Post]:
                 topic_label=topic_label(topic, data.get("topic_label") if isinstance(data.get("topic_label"), str) else None),
                 hub=hub,
                 cta=cta,
+                hide_cta=hide_cta,
                 faqs=faqs,
                 takeaways=takeaways,
                 video=load_video(data.get("video"), where),
@@ -707,20 +716,27 @@ def video_node(video: dict, url: str) -> dict:
 
 
 def related_html(post: Post, posts: list[Post]) -> str:
-    items = [
-        f'<li><a href="{html.escape(post.hub, quote=True)}">{html.escape(hub_label(post.hub))}</a></li>'
-    ]
-    cta_path = post.cta.split("#", 1)[0].rstrip("/")
-    hub_path = post.hub.split("#", 1)[0].rstrip("/")
-    if cta_path and cta_path != hub_path:
+    items: list[str] = []
+    seen: set[str] = set()
+
+    def add(href: str, label: str) -> None:
+        key = href.split("#", 1)[0].rstrip("/")
+        if not key or key in seen:
+            return
+        seen.add(key)
         items.append(
-            f'<li><a href="{html.escape(post.cta, quote=True)}">{html.escape(hub_label(post.cta))}</a></li>'
+            f'<li><a href="{html.escape(href, quote=True)}">{html.escape(label)}</a></li>'
         )
+
+    add(post.hub, hub_label(post.hub, posts))
+    if not post.hide_cta:
+        cta_path = post.cta.split("#", 1)[0].rstrip("/")
+        hub_path = post.hub.split("#", 1)[0].rstrip("/")
+        if cta_path and cta_path != hub_path:
+            add(post.cta, hub_label(post.cta, posts))
     siblings = [other for other in posts if other.slug != post.slug and other.topic == post.topic][:2]
     for other in siblings:
-        items.append(
-            f'<li><a href="/blog/{html.escape(other.slug, quote=True)}/">{html.escape(other.title)}</a></li>'
-        )
+        add(f"/blog/{other.slug}/", other.title)
     return (
         '<aside class="related">\n'
         '  <p class="section-eyebrow">Related</p>\n'
@@ -731,16 +747,20 @@ def related_html(post: Post, posts: list[Post]) -> str:
 
 def render_post(post: Post, posts: list[Post]) -> str:
     url = f"{SITE}/blog/{post.slug}/"
-    mid = cta_html(
-        CTA_MID,
-        cta_href(post.cta, post.slug, "inbody"),
-        cta_href("/contact/", post.slug, "inbody"),
-    )
-    end = cta_html(
-        CTA_END,
-        cta_href(post.cta, post.slug, "post_end"),
-        cta_href("/contact/", post.slug, "post_end"),
-    )
+    if post.hide_cta:
+        mid = ""
+        end = ""
+    else:
+        mid = cta_html(
+            CTA_MID,
+            cta_href(post.cta, post.slug, "inbody"),
+            cta_href("/contact/", post.slug, "inbody"),
+        )
+        end = cta_html(
+            CTA_END,
+            cta_href(post.cta, post.slug, "post_end"),
+            cta_href("/contact/", post.slug, "post_end"),
+        )
     body = render_body(parse_markdown(post.body, post.source), post.source, mid)
     takeaways = "\n".join(f"    <li>{html.escape(item)}</li>" for item in post.takeaways)
     faqs = []
@@ -1356,6 +1376,55 @@ Closing paragraph.
         first = (root / "blog" / "index.html").read_text(encoding="utf-8")
         build(root)
         assert (root / "blog" / "index.html").read_text(encoding="utf-8") == first
+
+        hidden = """---
+title: "No product pitch"
+description: "A note that skips the product calls to action."
+slug: no-product-pitch
+date: 2026-11-06
+topic: engagement
+hub: /blog/a-real-note/
+hide_cta: true
+faqs:
+  - q: "First hidden question?"
+    a: "First hidden answer."
+  - q: "Second hidden question?"
+    a: "Second hidden answer."
+  - q: "Third hidden question?"
+    a: "Third hidden answer."
+takeaways:
+  - "Hidden takeaway"
+---
+Intro.
+
+## Section one
+
+Opening paragraph.
+
+## Section two
+
+Middle paragraph.
+
+## Section three
+
+Closing paragraph.
+"""
+        (blog / "no-product-pitch.md").write_text(hidden, encoding="utf-8")
+        hidden_posts = build(root)
+        assert [post.slug for post in hidden_posts] == ["no-product-pitch", "a-real-note"]
+        hidden_page = (root / "blog" / "no-product-pitch" / "index.html").read_text(encoding="utf-8")
+        article = hidden_page.split("<article", 1)[1].split("<footer>", 1)[0]
+        assert 'class="post-cta"' not in article
+        assert "Book an Assessment" not in article
+        assert "utm_content=" not in article
+        assert "/15minutesairoadmap/" not in article
+        assert "/contact/" not in article
+        assert 'href="/blog/a-real-note/"' in article
+        assert ">A real note</a>" in article
+        still = (root / "blog" / "a-real-note" / "index.html").read_text(encoding="utf-8")
+        assert "Book an Assessment" in still
+        assert "utm_content=inbody" in still
+        (blog / "no-product-pitch.md").unlink()
 
         def fails(name: str, text: str) -> None:
             target = blog / name

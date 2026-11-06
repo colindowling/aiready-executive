@@ -31,6 +31,12 @@ Accountable leaders: CEO/President, Board Members, COO, CFO/Strategy Lead. This 
 - What the 30-day engagement includes: https://theaireadyexecutive.com/blog/what-the-30-day-engagement-includes/
 - Who the engagement is for: https://theaireadyexecutive.com/blog/who-the-engagement-is-for/
 - What the 15-minute session includes: https://theaireadyexecutive.com/blog/what-the-15-minute-session-includes/
+- Human judgment when AI does the busywork: https://theaireadyexecutive.com/blog/human-judgment-when-ai-does-busywork/
+- Use AI to shrink reactive work so you can see the week's real goal: https://theaireadyexecutive.com/blog/ai-shrinks-reactive-work-see-weeks-goal/
+- The same foundations that help humans help AI ship safely: https://theaireadyexecutive.com/blog/foundations-humans-and-ai-agents-need/
+- The year of the agent arrived faster than your org can manage it: https://theaireadyexecutive.com/blog/year-of-the-agent-faster-than-orgs/
+- Using AI isn't the same as getting results from AI: https://theaireadyexecutive.com/blog/using-ai-isnt-getting-results/
+- When four hours become fourteen minutes, your time model breaks: https://theaireadyexecutive.com/blog/when-four-hours-become-fourteen-minutes/
 
 ## Contact
 - Contact form: https://theaireadyexecutive.com/contact/

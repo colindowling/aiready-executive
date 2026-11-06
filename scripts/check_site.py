@@ -100,6 +100,20 @@ def walk_prices(node, found: list[str]) -> None:
             walk_prices(value, found)
 
 
+def hides_product_cta(slug: str) -> bool:
+    source = ROOT / "content" / "blog" / f"{slug}.md"
+    if not source.is_file():
+        return False
+    text = source.read_text(encoding="utf-8")
+    if not text.startswith("---\n"):
+        return False
+    end = text.find("\n---\n", 4)
+    if end == -1:
+        return False
+    front = text[4:end]
+    return bool(re.search(r"(?m)^hide_cta:\s*true\s*$", front))
+
+
 def main() -> int:
     errors: list[str] = []
     pages = html_files()
@@ -190,17 +204,32 @@ def main() -> int:
             if 'href="/about/"' not in text or "Colin Dowling" not in text:
                 errors.append(f"{rel}: byline does not link to /about/")
             slug = path.parent.name
-            for content in ("inbody", "post_end"):
-                query = (
-                    f"utm_source=blog&amp;utm_medium=internal"
-                    f"&amp;utm_campaign=blog_{slug}&amp;utm_content={content}"
-                )
-                if f'href="/15minutesairoadmap/?{query}"' not in text:
-                    errors.append(f"{rel}: missing roadmap CTA {content}")
-                if f'href="/contact/?{query}"' not in text:
-                    errors.append(f"{rel}: missing assessment CTA {content}")
-            if "Book an Assessment" not in text:
-                errors.append(f"{rel}: missing Book an Assessment")
+            if hides_product_cta(slug):
+                article = text.split("<article", 1)[1].split("<footer>", 1)[0]
+                for marker in (
+                    'class="post-cta"',
+                    "Book an Assessment",
+                    "Get the Roadmap",
+                    "Book My 15 Minutes",
+                    "utm_content=inbody",
+                    "utm_content=post_end",
+                    "/15minutesairoadmap/",
+                    'href="/contact/',
+                ):
+                    if marker in article:
+                        errors.append(f"{rel}: hide_cta post still has a product CTA ({marker})")
+            else:
+                for content in ("inbody", "post_end"):
+                    query = (
+                        f"utm_source=blog&amp;utm_medium=internal"
+                        f"&amp;utm_campaign=blog_{slug}&amp;utm_content={content}"
+                    )
+                    if f'href="/15minutesairoadmap/?{query}"' not in text:
+                        errors.append(f"{rel}: missing roadmap CTA {content}")
+                    if f'href="/contact/?{query}"' not in text:
+                        errors.append(f"{rel}: missing assessment CTA {content}")
+                if "Book an Assessment" not in text:
+                    errors.append(f"{rel}: missing Book an Assessment")
             if 'class="takeaways"' not in text:
                 errors.append(f"{rel}: missing key takeaways")
             needed = {"BlogPosting", "FAQPage", "BreadcrumbList", "Person"}
